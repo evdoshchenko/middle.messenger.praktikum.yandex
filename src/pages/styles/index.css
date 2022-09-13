@@ -1,0 +1,7 @@
+@import url('../../../static/styles/colors.css');
+@import url('../../../static/styles/fonts.css');
+
+@import url('./app.css');
+@import url('./footer.css');
+@import url('./header.css');
+@import url('./modal.css');

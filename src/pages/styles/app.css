@@ -1,0 +1,61 @@
+
+
+body {
+  margin: 0;
+  font-family: 'Sarabun', sans-serif;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background-color:var(--green-black);
+  color: var(--black);
+}
+
+a {
+  display: flex;
+  text-decoration: none;
+}
+
+.body__sign {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex-grow: 1;
+  background-color: var(--green-black);
+}
+
+.body__error {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex-grow: 1;
+  background: url("../../../static/images/404back.jpg") no-repeat center;
+  height: 100%;
+  background-size: cover;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.back__wrapper {
+  width: 10%;
+  height: 100%;
+  background-color: var(--green-light);
+  display: flex;
+}
+
+.back__button {
+  margin: auto;
+}
+
+.messenger__icons:hover {
+  filter: drop-shadow(var(--icon-shadow));
+}
+
+.messenger__icons:active {
+  filter: hue-rotate(260deg);
+}
+
+

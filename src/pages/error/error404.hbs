@@ -1,0 +1,28 @@
+---
+title: Error 404
+bodyclass: body__error
+stylesheets:
+  - ./error.css
+  - ../styles/index.css
+---
+
+{{#extend "base"}}
+
+  {{#content "header"}}
+    {{> header}}
+  {{/content}}
+
+  {{#content "main"}}
+    <main class="app">
+      <div class="error__wrapper">
+        <div class="error__form">
+          <div class="error__text">
+            {{> title caption="Error 404" classes="error__number"}}
+            {{> description caption="OOPS! Page not found!!" classes="error__number"}}
+          </div>
+          <a href="error500.hbs">{{> button classes="error__button" caption="Go back to Heylynx"}}</a>
+      </div>
+    </main>
+  {{/content}}
+
+{{/extend}}

@@ -1,0 +1,37 @@
+---
+title: Heylynx - Profile
+bodyclass: body__sign
+stylesheets:
+  - ./profile.css
+  - ../styles/index.css
+---
+
+{{#extend "base"}}
+  {{#content "main"}}
+    <main class="app">
+
+      <div class="back__wrapper">
+        <a href="../messenger/messenger.hbs" class="back__button messenger__icons" >
+          {{> back}}
+        </a>
+      </div>
+
+      <div class="profile__wrapper">
+        <div class="profile">
+          <div class="profile__inputs">
+            {{> profile-photo name="avatar" imglink="../../../static/images/avatars/leo.png"}}
+            {{> title caption="Change password" classes="profile__title"}}
+            {{> profile-input-edit caption="Current" name="oldPassword" type="password" minlength="8"}}
+            {{> profile-input-edit caption="New" name="newPassword" type="password" minlength="8"}}
+            {{> profile-input-edit caption="Confirm" name="newPassword" type="password" minlength="8"}}
+          </div>
+
+          <div class="profile__buttons">
+            <a href="profile.hbs">{{> button classes="profile__button" caption="Save"}}</a>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  {{/content}}
+{{/extend}}

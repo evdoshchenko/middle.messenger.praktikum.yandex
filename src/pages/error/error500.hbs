@@ -1,0 +1,28 @@
+---
+title: Error 500
+bodyclass: body__sign
+stylesheets:
+  - ./error.css
+  - ../styles/index.css
+---
+
+{{#extend "base"}}
+
+  {{#content "header"}}
+    {{> header}}
+  {{/content}}
+
+  {{#content "main"}}
+    <main class="app">
+      <div class="error__wrapper">
+        <div class="error__form">
+          <div class="error__text">
+            {{> title caption="Error 500" classes="error__number"}}
+            {{> description caption="We are fixing it!" classes="error__number"}}
+          </div>
+          <a href="../messenger/messenger.hbs">{{> button classes="error__button" caption="Go back to Heylynx"}}</a>
+      </div>
+    </main>
+  {{/content}}
+
+{{/extend}}

@@ -1,0 +1,25 @@
+---
+title: Heylynx - index
+bodyclass: body__sign
+stylesheets:
+  - ./sign/sign.css
+  - ./styles/index.css
+---
+
+{{#extend "base"}}
+  {{#content "main"}}
+    <main class="app">
+      <div class="login__wrapper">
+        <div class="login">
+          {{> title caption="Pages:" classes="login__title"}}
+          <div class="login__buttons">
+            <a href="./sign/signin.hbs">{{> button classes="login__button login__button_active" caption="Sign in"}}</a>
+            <a href="./sign/signup.hbs">{{> button classes="login__button" caption="Registration"}}</a>
+            <a href="./messenger/messenger.hbs">{{> button classes="login__button" caption="Messenger"}}</a>
+            <a href="./profile/profile.hbs">{{> button classes="login__button" caption="Profile"}}</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  {{/content}}
+{{/extend}}

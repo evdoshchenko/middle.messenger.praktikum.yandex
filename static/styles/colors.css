@@ -1,0 +1,10 @@
+:root {
+  --light: white;
+  --cream: mintcream;
+  --green-light: #2A9273;
+  --green-black: #1D4948;
+  --accent: #D3950E;
+  --black: #1e2e05;
+  --error: #d70d39;
+  --icon-shadow: 3px 3px 3px rgba(2, 15, 15, 0.85)
+}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+{{#block "head"}}
+  <head>
+    {{#block "meta"}}
+    {{> meta}}
+    {{/block}}
+
+    {{#block "title"}}
+    <title>{{title}}</title>
+    {{/block}}
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/png">
+    {{#block "styles"}}
+      {{#each stylesheets}}
+      <link href="{{this}}" rel="stylesheet" />
+      {{/each}}
+    {{/block}}
+  </head>
+{{/block}}
+
+{{#block "body"}}
+  <body>
+    <div class="{{bodyclass}}">
+    {{#block "header"}}
+    {{/block}}
+
+    {{#block "main"}}
+    {{/block}}
+
+    {{#block "footer"}}
+    {{/block}}
+    </div>
+  </body>
+{{/block}}
+</html>

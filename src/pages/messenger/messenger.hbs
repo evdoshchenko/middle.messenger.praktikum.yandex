@@ -1,0 +1,56 @@
+---
+title: Heylynx
+bodyclass: body__sign
+stylesheets:
+  - ./messenger.css
+  - ../styles/index.css
+
+contact: {
+  first_name: Nicolas,
+  second_name: Cage
+}
+
+---
+
+{{#extend "base"}}
+  {{#content "main"}}
+    <main class="app">
+      <div class="messenger">
+        
+        <div class="messenger__left">
+          <div class="messenger__search">
+            {{> search caption="Search" name="search"}}
+          </div>
+          <div class="messenger__chats">
+            {{> chats caption="Leo Di Caprio" photo="../../../static/images/avatars/leo.png" last-text="🥳 How are you?" chats-time="15:34" counter="13"}}
+            {{> chats classes="chats__wrapper_active" caption="Nicolas Cage" photo="../../../static/images/avatars/cage.png" last-text="I need a new role 😱" chats-time="08:23" counter="3"}}
+            {{> chats caption="Stevie Wonder" photo="../../../static/images/avatars/stevie.png" last-text="Hi, how are you?" chats-time="23.12.22" counter="1"}}
+            {{> chats caption="Sheldon Cooper" photo="../../../static/images/avatars/sheldon.png" last-text="Stevie?! Sarcasm? 🤯" chats-time="1.06.22" counter="1"}}
+            {{> chats caption="BoJack Horseman" photo="../../../static/images/avatars/bojack.png" last-text="I'm fine!!!" chats-time="1.06.22" counter="1"}}
+            {{> chats caption="Harley Quinn" photo="../../../static/images/avatars/quinn.png" last-text="🤬🤬🤬" chats-time="23.12.22" counter="1"}}
+            {{> chats caption="Sheldon Cooper" photo="../../../static/images/avatars/sheldon.png" last-text="Stevie?! Sarcasm? 🤯" chats-time="1.06.22" counter="1"}}
+            {{> chats caption="BoJack Horseman" photo="../../../static/images/avatars/bojack.png" last-text="I'm fine!!!" chats-time="1.06.22" counter="1"}}
+            {{> chats caption="Leo Di Caprio" photo="../../../static/images/avatars/leo.png" last-text="🥳 How are you?" chats-time="15:34" counter="13"}}
+            {{> chats caption="Nicolas Cage" photo="../../../static/images/avatars/cage.png" last-text="I need a new role 😱" chats-time="08:23" counter="3"}}
+          </div>
+          <div class="messenger__tabs">
+            {{> tabs}}
+          </div>
+        </div>
+
+        <div class="messenger__right">
+          <div class="messenger__contact">
+            {{> contact}}
+          </div>
+          <div class="messenger__chat">
+            {{> chat}}
+          </div>
+          <div class="messenger__message">
+            {{> message caption="Message" name="message"}}
+          </div>
+        </div>
+
+      </div>
+    </main>
+  {{/content}}
+{{/extend}}
