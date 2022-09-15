@@ -3,7 +3,7 @@
 {{#block "head"}}
   <head>
     {{#block "meta"}}
-    {{> meta}}
+    {{> base/meta}}
     {{/block}}
 
     {{#block "title"}}
@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="../favicon.ico" type="image/png">
     {{#block "styles"}}
       {{#each stylesheets}}
-      <link href="{{this}}" rel="stylesheet" />
+      <link rel="stylesheet" href="{{this}}" />
       {{/each}}
     {{/block}}
   </head>
@@ -21,7 +21,7 @@
 
 {{#block "body"}}
   <body>
-    <div class="{{bodyclass}}">
+    <div class="{{background}}">
     {{#block "header"}}
     {{/block}}
 

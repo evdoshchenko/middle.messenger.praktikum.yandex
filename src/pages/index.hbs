@@ -1,22 +1,25 @@
 ---
 title: Heylynx - index
-bodyclass: body__sign
+background: bg-main
 stylesheets:
-  - ./sign/sign.css
-  - ./styles/index.css
+  - ./styles/index.scss
 ---
 
 {{#extend "base"}}
   {{#content "main"}}
     <main class="app">
-      <div class="login__wrapper">
-        <div class="login">
-          {{> title caption="Pages:" classes="login__title"}}
-          <div class="login__buttons">
-            <a href="./sign/signin.hbs">{{> button classes="login__button login__button_active" caption="Sign in"}}</a>
-            <a href="./sign/signup.hbs">{{> button classes="login__button" caption="Registration"}}</a>
-            <a href="./messenger/messenger.hbs">{{> button classes="login__button" caption="Messenger"}}</a>
-            <a href="./profile/profile.hbs">{{> button classes="login__button" caption="Profile"}}</a>
+      <div class="form__wrapper">
+        <div class="form form-signin">
+          <div class="form__top">
+            {{> title/title caption="Pages:"}}
+          </div>
+          <div class="form__bottom">
+            {{> button/button caption="Sign in" link="./sign/signin.hbs" modifying="button_active"}}
+            {{> button/button caption="Registration" link="./sign/signup.hbs"}}
+            {{> button/button caption="Messenger" link="./messenger/messenger.hbs"}}
+            {{> button/button caption="Profile" link="./profile/profile.hbs"}}
+            {{> button/button caption="Error404" link="./error/error404.hbs"}}
+            {{> button/button caption="Error50*" link="./error/error500.hbs"}}
           </div>
         </div>
       </div>

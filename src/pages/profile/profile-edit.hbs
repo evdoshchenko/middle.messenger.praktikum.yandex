@@ -1,9 +1,8 @@
 ---
 title: Heylynx - Profile
-bodyclass: body__sign
+background: bg-main
 stylesheets:
-  - ./profile.css
-  - ../styles/index.css
+  - ../styles/index.scss
 ---
 
 {{#extend "base"}}
@@ -11,30 +10,30 @@ stylesheets:
     <main class="app">
 
       <div class="back__wrapper">
-        <a href="../messenger/messenger.hbs" class="back__button messenger__icons" >
-          {{> back}}
+        <a href="../messenger/messenger.hbs" class="back__button button-icons" >
+          {{> back/back}}
         </a>
       </div>
 
-      <div class="profile__wrapper">
-        <div class="profile">
-          <div class="profile__inputs">
-            {{> profile-photo name="avatar" imglink="../../../static/images/avatars/leo.png"}}
-            {{> title caption="Edit information" classes="profile__title"}}
-            {{> profile-input-edit data="Leonardo" caption="First name" name="first_name" type="text"}}
-            {{> profile-input-edit data="Di Caprio" caption="Second name" name="second_name" type="text"}}
-            {{> profile-input-edit data="Leo" caption="Display name" name="display_name" type="text"}}
-            {{> profile-input-edit data="leodi" caption="Login" name="login" type="text"}}
-            {{> profile-input-edit data="leo@di.app" caption="Email" name="email" type="email"}}
-            {{> profile-input-edit data="+1 234-555-6789" caption="Phone" name="phone" type="tel" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" }}
+      <div class="form__wrapper">
+        <div class="form form-profile">
+          <div class="form__top">
+            {{> profile/photo name="avatar" imglink="../../../static/images/avatars/leo.png"}}
+            {{> title/title caption="Edit information"}}
+            {{> profile/input-edit data="Leonardo" caption="First name" name="first_name" type="text"}}
+            {{> profile/input-edit data="Di Caprio" caption="Second name" name="second_name" type="text"}}
+            {{> profile/input-edit data="Leo" caption="Display name" name="display_name" type="text"}}
+            {{> profile/input-edit data="leodi" caption="Login" name="login" type="text"}}
+            {{> profile/input-edit data="leo@di.app" caption="Email" name="email" type="email"}}
+            {{> profile/input-edit data="+1 234-555-6789" caption="Phone" name="phone" type="tel" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" }}
           </div>
-
-          <div class="profile__buttons">
-            <a href="profile.hbs">{{> button classes="profile__button" caption="Save"}}</a>
+          
+          <div class="form__bottom">
+            {{> button/button caption="Save" link="profile.hbs"}}
           </div>
         </div>
       </div>
-
+      
     </main>
   {{/content}}
 {{/extend}}
