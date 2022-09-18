@@ -1,0 +1,26 @@
+:root {
+  --accent-font: 'Literata', serif;
+  // --main-font: 'Literata', serif;
+  --main-font: 'Sarabun', sans-serif;
+
+  --huge: 25px;
+  --big: 19px;
+  --medium: 16px;
+  --small: 13px;
+}
+
+@font-face {
+  font-family: 'Literata';
+  src: url("../fonts/Literata-Bold.woff2") format("woff2"),
+  url("../fonts/Literata-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Sarabun';
+  src: url("../fonts/Sarabun-Regular.woff2") format("woff2"),
+  url("../fonts/Sarabun-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}

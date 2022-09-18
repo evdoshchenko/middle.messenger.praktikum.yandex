@@ -1,0 +1,27 @@
+---
+title: Error 404
+background: bg-error
+stylesheets:
+  - ../styles/index.scss
+---
+
+{{#extend "base"}}
+
+  {{#content "header"}}
+    {{> header/header}}
+  {{/content}}
+
+  {{#content "main"}}
+    <main class="app">
+      <div class="form__wrapper">
+        <div class="form form-error">
+          <div class="form__top">
+            {{> title/title caption="Error 404"}}
+            {{> subtitle/subtitle caption="OOPS! Page not found!!"}}
+          </div>
+          {{> button/button caption="Go back to Heylynx" link="error500.hbs" modifying="button_active"}}
+      </div>
+    </main>
+  {{/content}}
+
+{{/extend}}

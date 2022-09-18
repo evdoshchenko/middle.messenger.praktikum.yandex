@@ -1,0 +1,34 @@
+---
+title: Heylynx - Sign In
+background: bg-main
+stylesheets:
+  - ../styles/index.scss
+---
+
+{{#extend "base"}}
+
+  {{#content "header"}}
+    {{> header/header}}
+  {{/content}}
+
+  {{#content "main"}}
+    <main class="app">
+      <div class="form__wrapper">
+        <div class="form form-signin">
+          
+          <div class="form__top">
+            {{> title/title caption="Hey, lynx!"}}
+            {{> input/input caption="Login" name="login" type="text"}}
+            {{> input/input caption="Password" name="password" type="password" minlength="8"}}
+          </div>
+          
+          <div class="form__bottom">
+            {{> button/button caption="Sign in" link="../messenger/messenger.hbs" modifying="button_active"}}
+            {{> button/button caption="Register" link="signup.hbs"}}
+          </div>
+
+        </div>
+      </div>
+    </main>
+  {{/content}}
+{{/extend}}

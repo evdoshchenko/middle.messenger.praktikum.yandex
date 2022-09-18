@@ -1,0 +1,10 @@
+# depend/node_modules
+/node_modules
+node_modules
+/dist
+dist
+/.parcel-cache
+parcel-cache
+/cache
+cache
+/build
