@@ -1,6 +1,9 @@
 
 # Heylynx messenger
 
+version 0.2.0
+technologies: TypeScript, ESLint, SCSS, Handlebars, Parcel, Node.js
+
 ## Install project
 
 - npm run build  (for build project)

@@ -1,0 +1,56 @@
+
+.form {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+  padding: 30px;
+  background: var(--light);
+  border-radius: 22px;
+  box-shadow: var(--module-shadow);
+
+  &__wrapper {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    min-height: 700px;
+    box-sizing: border-box;
+  }
+
+  &__top {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:center;
+  }
+
+  &__bottom {
+    width: 100%;
+  }
+
+  &-profile {
+    width: 480px;
+    height: 730px;
+    margin-top: 30px;
+  }
+
+  &-signin {
+    width: 400px;
+    height: 500px;
+    margin-top: 40px;
+  }
+
+  &-signup {
+    width: 400px;
+    height: 680px;
+    margin-top: 40px;
+  }
+
+  &-error {
+    width: 350px;
+    height: 300px;
+    margin-top: 125px;
+  }
+}
