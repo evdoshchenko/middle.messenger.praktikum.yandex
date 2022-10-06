@@ -113,7 +113,7 @@ export class SignupPage extends Block<Props, Refs> {
               ref="passwordInputConfirmRef"
               type="Password"
               validateType="Password"
-              name="password"
+              name="confirmPassword"
               label="Password"
               placeholder="Confirm Password"
               onInput=onInput
