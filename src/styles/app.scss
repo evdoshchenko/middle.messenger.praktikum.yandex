@@ -4,7 +4,7 @@ body {
   height: 100vh;
   margin: 0;
   font-family: var(--main-font);
-  background-color:var(--green-black);
+  background-color: var(--green-black);
   color: var(--black);
 }
 
@@ -16,7 +16,7 @@ body {
     flex-grow: 1;
     background-color: var(--green-black);
   }
-  
+
   &-error {
     display: flex;
     flex-direction: column;
@@ -24,7 +24,7 @@ body {
     flex-grow: 1;
     background-size: cover;
   }
-} 
+}
 
 .app {
   width: 100%;
@@ -38,8 +38,8 @@ a {
   text-decoration: none;
 }
 
-::placeholder { 
-  opacity: 0.75; 
+::placeholder {
+  opacity: 0.75;
   font-family: var(--main-font);
 }
 
@@ -47,7 +47,7 @@ a {
   &:hover {
     filter: drop-shadow(var(--icon-shadow));
   }
-  
+
   &:active {
     filter: hue-rotate(260deg);
   }

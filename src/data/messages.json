@@ -1,0 +1,49 @@
+{
+  "data": [
+    {
+      "type": "in",
+      "photo": "",
+      "text": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested."
+    },
+    {
+      "type": "in",
+      "photo": "https://danilynx.app/heylynx/static/images/backgrounds/404.jpg",
+      "text": ""
+    },
+    {
+      "type": "out",
+      "photo": "",
+      "text": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock"
+    },
+    {
+      "type": "in",
+      "photo": "",
+      "text": "Where can I get some?"
+    },
+    {
+      "type": "in",
+      "photo": "",
+      "text": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested."
+    },
+    {
+      "type": "in",
+      "photo": "",
+      "text": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock"
+    },
+    {
+      "type": "out",
+      "photo": "https://danilynx.app/heylynx/static/images/backgrounds/404.jpg",
+      "text": ""
+    },
+    {
+      "type": "out",
+      "photo": "",
+      "text": "Where can I get some?"
+    },
+    {
+      "type": "in",
+      "photo": "",
+      "text": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested."
+    }
+  ]
+}

@@ -7,8 +7,7 @@ type IncomingProps = {
   link?: string;
 };
 
-type Props = IncomingProps & {
-};
+type Props = IncomingProps;
 
 export class ButtonBack extends Block<Props> {
   static componentName = 'ButtonBack';

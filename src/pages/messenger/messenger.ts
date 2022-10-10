@@ -9,7 +9,6 @@ export class MessengerPage extends Block<{}> {
 
       onSubmit: (e: FocusEvent) => {
         e.preventDefault();
-        console.log('clicked3');
       },
     });
   }

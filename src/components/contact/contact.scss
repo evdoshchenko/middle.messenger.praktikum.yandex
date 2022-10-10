@@ -16,7 +16,7 @@
 
   &__name {
     font-family: var(--accent-font);
-    margin: auto auto auto 0px;
+    margin: auto auto auto 0;
     height: auto;
     flex-grow: 1;
     color: var(--light);
@@ -27,9 +27,9 @@
     height: 40px;
     width: 40px;
     border-radius: 50%;
-    background-color:var(--green-light);
+    background-color: var(--green-light);
     margin-right: 10px;
-    overflow:hidden;
+    overflow: hidden;
   }
 
   &__details {

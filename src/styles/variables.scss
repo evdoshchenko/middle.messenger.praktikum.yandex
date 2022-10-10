@@ -2,19 +2,21 @@
   /* colors */
   --light: white;
   --cream: mintcream;
-  --green-light: #2A9273;
-  --green-black: #1D4948;
-  --accent: #D3950E;
+  --green-light: #2a9273;
+  --green-black: #1d4948;
+  --accent: #d3950e;
   --black: #1e2e05;
   --grey: gainsboro;
   --error: #d70d39;
+
   /* shadows: */
-  --icon-shadow: 3px 3px 3px rgba(2, 15, 15, 0.85);
-  --module-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-  --button-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  --icon-shadow: 3px 3px 3px rgb(2 15 15 / 85%);
+  --module-shadow: 5px 5px 10px rgb(0 0 0 / 50%);
+  --button-shadow: 1px 1px 2px rgb(0 0 0 / 20%);
+
   /* fonts */
-  --accent-font: 'Literata', serif;
-  --main-font: 'Sarabun', sans-serif;
+  --accent-font: "Literata", serif;
+  --main-font: "Sarabun", sans-serif;
   --huge: 25px;
   --big: 19px;
   --medium: 16px;
@@ -23,17 +25,19 @@
 }
 
 @font-face {
-  font-family: 'Literata';
-  src: url("../../static/fonts/Literata-Bold.woff2") format("woff2"),
-  url("../../static/fonts/Literata-Bold.woff") format("woff");
+  font-family: Literata;
+  src:
+    url("../../static/fonts/Literata-Bold.woff2") format("woff2"),
+    url("../../static/fonts/Literata-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Sarabun';
-  src: url("../../static/fonts/Sarabun-Regular.woff2") format("woff2"),
-  url("../../static/fonts/Sarabun-Regular.woff") format("woff");
+  font-family: Sarabun;
+  src:
+    url("../../static/fonts/Sarabun-Regular.woff2") format("woff2"),
+    url("../../static/fonts/Sarabun-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }

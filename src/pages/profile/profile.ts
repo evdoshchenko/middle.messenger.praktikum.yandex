@@ -26,7 +26,6 @@ export class ProfilePage extends Block<Props, Refs> {
     this.setProps({
       onSubmit: (e: FocusEvent) => {
         e.preventDefault();
-        console.log('clicked3');
       },
     });
   }
@@ -47,7 +46,7 @@ export class ProfilePage extends Block<Props, Refs> {
 
               {{{ControlledInput
                 modifying="profile"
-                disabled="disabled"
+                disabled=true
                 ref="firstNameInputRef"
                 type="First name"
                 validateType="FirstName"
@@ -59,7 +58,7 @@ export class ProfilePage extends Block<Props, Refs> {
               }}}
               {{{ControlledInput
                 modifying="profile"
-                disabled="disabled"
+                disabled=true
                 ref="secondNameInputRef"
                 type="Second name"
                 validateType="SecondName"
@@ -71,7 +70,7 @@ export class ProfilePage extends Block<Props, Refs> {
               }}}
               {{{ControlledInput
                 modifying="profile"
-                disabled="disabled"
+                disabled=true
                 ref="displayNameInputRef"
                 type="Display name"
                 validateType="DisplayName"
@@ -83,7 +82,7 @@ export class ProfilePage extends Block<Props, Refs> {
               }}}
               {{{ControlledInput
                 modifying="profile"
-                disabled="disabled"
+                disabled=true
                 ref="loginInputRef"
                 type="Login"
                 validateType="Login"
@@ -95,7 +94,7 @@ export class ProfilePage extends Block<Props, Refs> {
               }}}
               {{{ControlledInput
                 modifying="profile"
-                disabled="disabled"
+                disabled=true
                 ref="emailInputRef"
                 type="Email"
                 validateType="Email"
@@ -108,7 +107,7 @@ export class ProfilePage extends Block<Props, Refs> {
               }}}
               {{{ControlledInput
                 modifying="profile"
-                disabled="disabled"
+                disabled=true
                 ref="phoneInputRef"
                 type="Phone"
                 validateType="Phone"

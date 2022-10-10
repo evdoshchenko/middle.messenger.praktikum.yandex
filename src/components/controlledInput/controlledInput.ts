@@ -1,5 +1,6 @@
 import Block from 'core/Block';
-import { validateForm, ValidateType } from 'helpers/validateForm';
+import { validateForm } from 'helpers/validateForm';
+import { ValidateType } from 'helpers/types';
 import { debounce } from 'helpers/debounce';
 
 import Input from '../input';
@@ -16,7 +17,7 @@ type IncomingProps = {
   name?: string;
   label?: string;
   modifying?: string;
-  disabled?: string;
+  disabled?: boolean;
 };
 
 type Props = IncomingProps & {
@@ -55,7 +56,7 @@ export class ControlledInput extends Block<Props, Refs> {
     const inputEl = e.target as HTMLInputElement;
     const typeEl = this.props.validateType as ValidateType;
     const error = validateForm([
-      { type: ValidateType[typeEl], value: inputEl.value },
+      { type: typeEl, value: inputEl.value },
     ]);
 
     this.refs.errorRef.setProps({
@@ -79,7 +80,7 @@ export class ControlledInput extends Block<Props, Refs> {
             onFocus=onFocus
             onBlur=onBlur
             modifying="{{modifying}}"
-            disabled="{{disabled}}"
+            disabled=disabled
             ref="inputRef" 
           }}}
         </div>

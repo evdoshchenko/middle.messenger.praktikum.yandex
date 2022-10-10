@@ -7,8 +7,7 @@ type IncomingProps = {
   submitted?: boolean;
 };
 
-type Props = IncomingProps & {
-};
+type Props = IncomingProps;
 
 export class InputError extends Block<Props> {
   static componentName = 'InputError';

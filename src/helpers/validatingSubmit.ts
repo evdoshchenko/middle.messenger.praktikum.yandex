@@ -1,4 +1,5 @@
-import { validateForm, ValidateType } from 'helpers/validateForm';
+import { validateForm } from 'helpers/validateForm';
+import { ValidateType } from 'helpers/types';
 import Block from 'core/Block';
 
 export function validatingSubmit(refs: { [key: string]: Block<{}> }) {
@@ -9,7 +10,7 @@ export function validatingSubmit(refs: { [key: string]: Block<{}> }) {
       const input = ref[1].refs.inputRef.getContent();
       const type = ref[1].props.validateType as ValidateType;
       const error = validateForm([
-        { type: ValidateType[type], value: input.value },
+        { type, value: input.value },
       ]);
       ref[1].refs.errorRef.setProps({
         text: error,

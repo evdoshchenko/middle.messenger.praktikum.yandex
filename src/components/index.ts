@@ -16,8 +16,7 @@ import Chats from './chats';
 import ChatsItem from './chats/chatsItem';
 import Contact from './contact';
 import Chat from './chat';
-import ChatText from './chat/chatText';
-import ChatImage from './chat/chatImage';
+import ChatItem from './chat/chatItem';
 import Message from './message';
 import ButtonSend from './buttonSend';
 
@@ -38,8 +37,7 @@ export const components: BlockConstructable[] = [
   ChatsItem,
   Contact,
   Chat,
-  ChatText,
-  ChatImage,
+  ChatItem,
   Message,
   ButtonSend,
 ];

@@ -7,8 +7,7 @@ type IncomingProps = {
   imglink?: string;
 };
 
-type Props = IncomingProps & {
-};
+type Props = IncomingProps;
 
 export class ProfilePhoto extends Block<Props> {
   static componentName = 'ProfilePhoto';

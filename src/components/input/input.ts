@@ -11,6 +11,7 @@ type IncomingProps = {
   name?: string;
   label?: string;
   value?: string;
+  disabled?: boolean;
 };
 
 type Props = {
@@ -19,6 +20,7 @@ type Props = {
   name?: string;
   label?: string;
   value?: string;
+  disabled?: boolean;
   events?: {
     input?: () => void;
     focus?: () => void;
@@ -43,7 +45,7 @@ export class Input extends Block<Props> {
           name="{{name}}" 
           class="input{{#if modifying}}-{{modifying}}{{/if}}" 
           type="{{type}}" 
-          {{#if disabled}}{{disabled}}{{/if}} 
+          {{#if disabled}}disabled{{/if}} 
           placeholder="{{placeholder}}" 
           value="">
     `;

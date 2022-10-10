@@ -6,8 +6,7 @@ type IncomingProps = {
   text?: string;
 };
 
-type Props = IncomingProps & {
-};
+type Props = IncomingProps;
 
 export class Subtitle extends Block<Props> {
   static componentName = 'Subtitle';

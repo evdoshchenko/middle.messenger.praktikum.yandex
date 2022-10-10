@@ -38,6 +38,8 @@ export class Message extends Block<Props, Refs> {
       },
       onSubmit: (e: FocusEvent) => {
         e.preventDefault();
+        // Пока больше некуда выводить для проверки рабоспособности. Я по ТЗ и для инпута добавил:
+        // "Сделайте сбор данных из формы. В console.log должен выводиться объект со всеми заполненными полями формы."
         console.log((this.refs.inputRef.getContent() as HTMLInputElement).value);
       },
     });
@@ -63,7 +65,6 @@ export class Message extends Block<Props, Refs> {
           }}}
           {{{ButtonSend ref="buttonSendRef" onClick=onSubmit sendable="{{sendable}}" }}}
         </div>
-    
       </div>
     `;
   }

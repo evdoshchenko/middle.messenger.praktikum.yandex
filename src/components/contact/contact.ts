@@ -9,8 +9,7 @@ type IncomingProps = {
   secondName?: string;
 };
 
-type Props = IncomingProps & {
-};
+type Props = IncomingProps;
 
 export class Contact extends Block<Props> {
   static componentName = 'Contact';
