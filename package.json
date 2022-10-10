@@ -1,6 +1,6 @@
 {
   "name": "middle.messenger.praktikum.yandex",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "messenger",
   "scripts": {
     "dev": "parcel src/index.html --no-cache",
@@ -38,8 +38,8 @@
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",
     "parcel": "2.7.0",
-    "postcss": "^8.4.17",
-    "postcss-scss": "^4.0.5",
+    "postcss": "8.4.17",
+    "postcss-scss": "4.0.5",
     "sass": "1.55.0",
     "stylelint": "14.13.0",
     "stylelint-scss": "4.3.0",
