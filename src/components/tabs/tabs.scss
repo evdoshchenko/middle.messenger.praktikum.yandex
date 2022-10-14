@@ -1,0 +1,15 @@
+.tabs {
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  &__photo {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+}

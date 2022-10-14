@@ -1,0 +1,43 @@
+.button {
+  cursor: pointer;
+  margin-top: 11px;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 44px;
+  border-radius: 22px;
+  font-family: var(--accent-font);
+  font-size: var(--medium);
+  background-color: var(--cream);
+  color: var(--green-light);
+  border: 1px solid var(--green-light);
+  box-shadow: var(--button-shadow);
+
+  &_disabled {
+    color: var(--grey);
+    border-color: var(--cream);
+  }
+
+  &_attraction {
+    background-color: var(--green-light);
+    color: var(--light);
+    border: none;
+  }
+
+  &_danger {
+    color: var(--error);
+    border-color: var(--error);
+  }
+
+  &:focus {
+    border: 1px solid var(--accent);
+    background-color: var(--light);
+    color: var(--accent);
+  }
+
+  &__caption {
+    width: auto;
+    height: auto;
+    margin: auto;
+  }
+}

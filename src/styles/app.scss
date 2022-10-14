@@ -1,0 +1,54 @@
+body {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  font-family: var(--main-font);
+  background-color: var(--green-black);
+  color: var(--black);
+}
+
+.bg {
+  &-main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+    background-color: var(--green-black);
+  }
+
+  &-error {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+    background-size: cover;
+  }
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  margin: auto;
+}
+
+a {
+  display: flex;
+  text-decoration: none;
+}
+
+::placeholder {
+  opacity: 0.75;
+  font-family: var(--main-font);
+}
+
+.button-icons {
+  &:hover {
+    filter: drop-shadow(var(--icon-shadow));
+  }
+
+  &:active {
+    filter: hue-rotate(260deg);
+  }
+}
