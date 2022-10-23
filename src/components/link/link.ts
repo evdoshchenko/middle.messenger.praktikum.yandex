@@ -16,7 +16,7 @@ type Props = {
   }
 };
 
-export class Link extends Block<Props> {
+export default class Link extends Block<Props> {
   static componentName = 'Link';
 
   constructor({

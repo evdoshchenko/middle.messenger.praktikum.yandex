@@ -3,7 +3,7 @@ import Block from './Block';
 
 export type BlockConstructable<Props = {}> = {
   new(props: Props): Block<{}>;
-  componentName: string;
+  componentName?: string;
 };
 
 export default function registerComponent<Props>(Component: BlockConstructable<Props>) {

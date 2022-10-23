@@ -1,18 +1,22 @@
+import EventBus from 'core/EventBus';
 import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
-import EventBus from './EventBus';
 
 type Events = Values<typeof Block.EVENTS>;
 
-export default class Block<P extends Record<string, any>, Refs extends Record<string, Block<any>> = {} > {
+export interface BlockClass<P> extends Function {
+  new (props: P): Block<P>;
+  componentName?: string;
+}
+
+export default class Block<P = any, Refs extends Record<string, Block<any>> = {}> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
+    FLOW_CWU: 'flow:component-will-unmount',
     FLOW_RENDER: 'flow:render',
   } as const;
-
-  static componentName: string;
 
   public id = nanoid(6);
 
@@ -20,17 +24,24 @@ export default class Block<P extends Record<string, any>, Refs extends Record<st
 
   protected readonly props: P;
 
-  protected children: { [id: string]: Block<{}> } = {};
+  protected children: { [id: string]: Block } = {};
 
   eventBus: () => EventBus<Events>;
 
+  protected state: any = {};
+
   // @ts-expect-error
-  protected refs: Refs = {};
+  refs: Refs = {};
+
+  public static componentName?: string;
 
   public constructor(props?: P) {
     const eventBus = new EventBus<Events>();
 
-    this.props = this._makePropsProxy(props || {} as P);
+    this.getStateFromProps(props);
+
+    this.props = this._makePropsProxy(props || ({} as P));
+    this.state = this._makePropsProxy(this.state);
 
     this.eventBus = () => eventBus;
 
@@ -39,15 +50,31 @@ export default class Block<P extends Record<string, any>, Refs extends Record<st
     eventBus.emit(Block.EVENTS.INIT, this.props);
   }
 
+  _checkInDom() {
+    const elementInDOM = document.body.contains(this._element);
+
+    if (elementInDOM) {
+      setTimeout(() => this._checkInDom(), 1000);
+      return;
+    }
+
+    this.eventBus().emit(Block.EVENTS.FLOW_CWU, this.props);
+  }
+
   _registerEvents(eventBus: EventBus<Events>) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
   _createResources() {
     this._element = this._createDocumentElement('div');
+  }
+
+  protected getStateFromProps(props: any): void {
+    this.state = {};
   }
 
   init() {
@@ -56,11 +83,19 @@ export default class Block<P extends Record<string, any>, Refs extends Record<st
   }
 
   _componentDidMount(props: P) {
+    this._checkInDom();
+
     this.componentDidMount(props);
   }
 
-  componentDidMount(props: P) {
+  componentDidMount(props: P) {}
+
+  _componentWillUnmount() {
+    this.eventBus().destroy();
+    this.componentWillUnmount();
   }
+
+  componentWillUnmount() {}
 
   _componentDidUpdate(oldProps: P, newProps: P) {
     const response = this.componentDidUpdate(oldProps, newProps);
@@ -74,15 +109,23 @@ export default class Block<P extends Record<string, any>, Refs extends Record<st
     return true;
   }
 
-  setProps = (nextProps: P) => {
+  setProps = (nextProps: Partial<P>) => {
     if (!nextProps) {
       return;
     }
 
-    Object.assign(this.props, nextProps);
+    Object.assign(this.props!, nextProps);
   };
 
   getProps = () => this.props;
+
+  setState = (nextState: any) => {
+    if (!nextState) {
+      return;
+    }
+
+    Object.assign(this.state, nextState);
+  };
 
   get element() {
     return this._element;
@@ -107,7 +150,9 @@ export default class Block<P extends Record<string, any>, Refs extends Record<st
   getContent(): HTMLElement {
     if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
       setTimeout(() => {
-        if (this.element?.parentNode?.nodeType !== Node.DOCUMENT_FRAGMENT_NODE) {
+        if (
+          this.element?.parentNode?.nodeType !== Node.DOCUMENT_FRAGMENT_NODE
+        ) {
           this.eventBus().emit(Block.EVENTS.FLOW_CDM);
         }
       }, 100);
@@ -171,7 +216,10 @@ export default class Block<P extends Record<string, any>, Refs extends Record<st
 
     const template = Handlebars.compile(this.render());
     fragment.innerHTML = template({
-      ...this.props, children: this.children, refs: this.refs,
+      ...this.state,
+      ...this.props,
+      children: this.children,
+      refs: this.refs,
     });
 
     Object.entries(this.children).forEach(([id, component]) => {
@@ -186,22 +234,13 @@ export default class Block<P extends Record<string, any>, Refs extends Record<st
       const content = component.getContent();
       stub.replaceWith(content);
 
-      const slotContent = content.querySelector('[data-slot="1"]') as HTMLDivElement;
+      const layoutContent = content.querySelector('[data-layout="1"]');
 
-      if (slotContent && stubChilds.length) {
-        slotContent.append(...stubChilds);
-        delete slotContent.dataset.slot;
+      if (layoutContent && stubChilds.length) {
+        layoutContent.append(...stubChilds);
       }
     });
 
     return fragment.content;
-  }
-
-  show() {
-    this.getContent().style.display = 'block';
-  }
-
-  hide() {
-    this.getContent().style.display = 'none';
   }
 }

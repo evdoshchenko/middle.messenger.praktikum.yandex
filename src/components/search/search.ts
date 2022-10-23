@@ -23,7 +23,7 @@ type Refs = {
   buttonSendRef: ButtonSend;
 };
 
-export class Search extends Block<Props, Refs> {
+export default class Search extends Block<Props, Refs> {
   static componentName = 'Search';
 
   constructor({ ...props }: IncomingProps) {

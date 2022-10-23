@@ -1,9 +1,11 @@
 
 # Heylynx messenger
 
-- version 0.2.1
+- version 0.3.0
 
 - technologies: TypeScript, ESLint, SCSS, Handlebars, Parcel, Node.js
+
+- functionalities: Routing, working with API
 
 ## Install project
 

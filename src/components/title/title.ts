@@ -1,5 +1,4 @@
 import Block from 'core/Block';
-import template from 'bundle-text:./title.hbs';
 
 import './title.scss';
 
@@ -9,7 +8,7 @@ type IncomingProps = {
 
 type Props = IncomingProps;
 
-export class Title extends Block<Props> {
+export default class Title extends Block<Props> {
   static componentName = 'Title';
 
   constructor({ text }: IncomingProps) {
@@ -20,6 +19,5 @@ export class Title extends Block<Props> {
     return `
       <h1 class="title">{{text}}</h1>
     `;
-    // return template;
   }
 }

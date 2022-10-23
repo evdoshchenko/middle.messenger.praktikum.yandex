@@ -1,1 +1,1 @@
-export { ButtonSend as default } from './buttonSend';
+export { default } from './buttonSend';

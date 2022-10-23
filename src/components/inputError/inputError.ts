@@ -9,7 +9,7 @@ type IncomingProps = {
 
 type Props = IncomingProps;
 
-export class InputError extends Block<Props> {
+export default class InputError extends Block<Props> {
   static componentName = 'InputError';
 
   constructor({ ...props }: IncomingProps) {

@@ -2,6 +2,7 @@ export function sendSubmit() {
   let problems: boolean = false;
   const errors: any = document.querySelectorAll('.input-error');
   const errorsArray = Array.from(errors) as Array<HTMLElement>;
+
   for (let i = 0; i < errorsArray.length; i += 1) {
     if (errorsArray[i].outerText) {
       problems = true;

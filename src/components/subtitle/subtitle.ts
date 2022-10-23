@@ -8,7 +8,7 @@ type IncomingProps = {
 
 type Props = IncomingProps;
 
-export class Subtitle extends Block<Props> {
+export default class Subtitle extends Block<Props> {
   static componentName = 'Subtitle';
 
   constructor({ text }: IncomingProps) {

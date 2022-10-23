@@ -31,7 +31,7 @@ type Refs = {
   errorRef: InputError;
 };
 
-export class ControlledInput extends Block<Props, Refs> {
+export default class ControlledInput extends Block<Props, Refs> {
   static componentName = 'ControlledInput';
 
   constructor({ ...props }: IncomingProps) {
@@ -44,7 +44,9 @@ export class ControlledInput extends Block<Props, Refs> {
         }
       },
       onInput: (e: FocusEvent) => {
-        debounce(() => this.validating(e), 2000)();
+        debounce(() => {
+          this.validating(e);
+        }, 2000)();
       },
       onBlur: (e: FocusEvent) => {
         this.validating(e);
@@ -58,7 +60,6 @@ export class ControlledInput extends Block<Props, Refs> {
     const error = validateForm([
       { type: typeEl, value: inputEl.value },
     ]);
-
     this.refs.errorRef.setProps({
       text: error,
       submitted: false,
@@ -82,6 +83,7 @@ export class ControlledInput extends Block<Props, Refs> {
             modifying="{{modifying}}"
             disabled=disabled
             ref="inputRef" 
+            value=value
           }}}
         </div>
         {{{InputError ref="errorRef" name="{{name}}" text=error modifying="{{modifying}}"}}}

@@ -1,6 +1,6 @@
 {
   "name": "middle.messenger.praktikum.yandex",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "messenger",
   "scripts": {
     "dev": "parcel src/index.html --no-cache",
@@ -13,13 +13,18 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "alias": {
+    "src": "./src",
+    "store": "./src/store",
     "components": "./src/components",
     "core": "./src/core",
     "helpers": "./src/helpers",
     "pages": "./src/pages",
     "images": "./src/images",
     "icons": "./src/icons",
-    "data": "./src/data"
+    "data": "./src/data",
+    "utils": "./src/utils",
+    "api": "./src/api",
+    "services": "./src/services"
   },
   "keywords": [],
   "repository": {
@@ -40,6 +45,7 @@
     "parcel": "2.7.0",
     "postcss": "8.4.17",
     "postcss-scss": "4.0.5",
+    "process": "0.11.10",
     "sass": "1.55.0",
     "stylelint": "14.13.0",
     "stylelint-scss": "4.3.0",

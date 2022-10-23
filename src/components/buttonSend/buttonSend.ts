@@ -15,7 +15,7 @@ type Props = {
   }
 };
 
-export class ButtonSend extends Block<Props> {
+export default class ButtonSend extends Block<Props> {
   static componentName = 'ButtonSend';
 
   constructor({
@@ -29,7 +29,7 @@ export class ButtonSend extends Block<Props> {
   protected render(): string {
     return `
     <div 
-      class="button-send {{#if sendable}}sendable{{/if}} button-icons">
+      class="button-send {{#if sendable}}sendable{{/if}}">
       <img src="${imgSend}" alt="details" width="40px" height="40px"></img>
     </div> 
     `;

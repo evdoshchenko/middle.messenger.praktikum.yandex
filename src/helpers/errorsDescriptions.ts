@@ -7,4 +7,5 @@ export const errorsDescriptions = {
   SecondName: 'Latin-Cyrillic and -, first capital, no spaces, numbers or symbols',
   DisplayName: 'Latin-Cyrillic and -, first capital, no spaces, numbers or symbolsв',
   Message: 'must not be empty',
+  UserID: 'from 1 to 15 characters, consists of numbers',
 };

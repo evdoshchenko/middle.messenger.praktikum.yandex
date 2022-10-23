@@ -1,15 +1,20 @@
-import Block from 'core/Block';
+import { withStore, withRouter, withIsLoading } from 'utils';
+import { CoreRouter, Store, Block } from 'core';
 import { sendSubmit } from 'helpers/sendSubmit';
 import { validatingSubmit } from 'helpers/validatingSubmit';
 import ControlledInput from 'components/controlledInput';
+import { login } from 'services/auth';
 import Link from 'components/link';
+import { initChats } from 'services/initChats';
 
-type IncomingProps = {
-};
-
-type Props = IncomingProps & {
-  onSubmit?: (e: FocusEvent) => void;
-  onLink?: (e: FocusEvent) => void;
+type Props = {
+  router: CoreRouter;
+  store: Store<AppState>;
+  isLoading: boolean;
+  onToggleAppLoading?: () => void;
+  onNavigateNext?: () => void;
+  onSignIn?: () => void;
+  onSignUp?: () => void;
 };
 
 type Refs = {
@@ -19,31 +24,41 @@ type Refs = {
 };
 
 export class SigninPage extends Block<Props, Refs> {
-  constructor() {
-    super();
+  static componentName = 'SigninPage';
+
+  constructor(props: Props) {
+    super(props);
+
     this.setProps({
-      onSubmit: (e: FocusEvent) => {
-        e.preventDefault();
-        validatingSubmit(this.refs);
-        if (sendSubmit()) {
-          console.log(sendSubmit());
-        }
-      },
-      onLink: (e: FocusEvent) => {
-        e.preventDefault();
-        const nextValue = String(Number(this.refs.linkRef.getProps().text) + 1);
-        this.refs.linkRef.setProps({ text: nextValue });
-      },
+      onSignIn: () => this.onSignIn(),
+      onSignUp: () => this.onSignUp(),
     });
   }
 
+  onSignIn() {
+    validatingSubmit(this.refs);
+    const data = sendSubmit();
+    if (data) {
+      this.props.store.dispatch(login, data);
+      this.props.store.dispatch(initChats);
+    }
+  }
+
+  onSignUp() {
+    this.props.router.go('/sign-up');
+  }
+
   render() {
+    const error = this.props.store.getState().loginFormError;
+
     return `
+    {{#Layout isLoading=true}}
       <div class="form__wrapper">
         <form class="form form-signin">
           <div class="form__top">
 
             {{{Title text="Hey, lynx!"}}}
+            {{{Subtitle text="${error !== null ? error : ''}"}}}
             
             {{{ControlledInput
               modifying="sign"
@@ -55,6 +70,7 @@ export class SigninPage extends Block<Props, Refs> {
               placeholder="Your Login"
               onInput=onInput
               onFocus=onFocus
+              value="Testqqq2"
             }}}
             {{{ControlledInput
               modifying="sign"
@@ -66,16 +82,20 @@ export class SigninPage extends Block<Props, Refs> {
               placeholder="Your Password"
               onInput=onInput
               onFocus=onFocus
+              value="Testqqq2"
             }}}
           </div>
           
           <div class="form__bottom">
-            {{{Button text="Sign in" link="/signin" onClick=onSubmit type="Submit" modifying="attraction"}}}
-            {{{Button text="Sign up" link="/signup" onClick=onSubmit}}}
+            {{{Button text="Sign in" onClick=onSignIn modifying="attraction"}}}
+            {{{Button text="Sign up" onClick=onSignUp }}}
           </div>
 
         </form>
       </div>
+    {{/Layout}}
     `;
   }
 }
+
+export default withRouter(withStore(withIsLoading(SigninPage)));

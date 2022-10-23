@@ -28,7 +28,7 @@ type Props = {
   }
 };
 
-export class Input extends Block<Props> {
+export default class Input extends Block<Props> {
   static componentName = 'Input';
 
   constructor({
@@ -47,7 +47,7 @@ export class Input extends Block<Props> {
           type="{{type}}" 
           {{#if disabled}}disabled{{/if}} 
           placeholder="{{placeholder}}" 
-          value="">
+          value="{{value}}">
     `;
   }
 }
