@@ -1,10 +1,7 @@
-import Block from 'core/Block';
-import { validateForm } from 'helpers/validateForm';
-import { ValidateType } from 'helpers/types';
-import { debounce } from 'helpers/debounce';
-
-import Input from '../input';
-import InputError from '../inputError';
+import { Block } from 'core';
+import { validateForm, ValidateType, debounce } from 'helpers';
+import { Input } from '../input';
+import { InputError } from '../inputError';
 
 import './controlledInput.scss';
 
@@ -31,7 +28,7 @@ type Refs = {
   errorRef: InputError;
 };
 
-export default class ControlledInput extends Block<Props, Refs> {
+export class ControlledInput extends Block<Props, Refs> {
   static componentName = 'ControlledInput';
 
   constructor({ ...props }: IncomingProps) {

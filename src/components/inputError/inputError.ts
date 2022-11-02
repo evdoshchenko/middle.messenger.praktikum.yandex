@@ -1,4 +1,4 @@
-import Block from 'core/Block';
+import { Block } from 'core';
 
 import './inputError.scss';
 
@@ -9,7 +9,7 @@ type IncomingProps = {
 
 type Props = IncomingProps;
 
-export default class InputError extends Block<Props> {
+export class InputError extends Block<Props> {
   static componentName = 'InputError';
 
   constructor({ ...props }: IncomingProps) {

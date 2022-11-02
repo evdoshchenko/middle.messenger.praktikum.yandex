@@ -1,4 +1,4 @@
-export type CoreRouter = {
+export interface CoreRouter {
   start(): void
 
   use(path: string, callback: () => void): CoreRouter
@@ -8,4 +8,4 @@ export type CoreRouter = {
   back(): void
 
   forward(): void
-};
+}

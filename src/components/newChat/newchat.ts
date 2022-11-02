@@ -1,18 +1,18 @@
 import { withStore, withRouter, withIsLoading } from 'utils';
-import { newchat } from 'services/chats';
+import { createNewChat } from 'services';
 import { CoreRouter, Store, Block } from 'core';
-import validating from 'helpers/validating';
-import escape from 'helpers/escape';
+import { validating, escape } from 'helpers';
+import { Input } from '../input';
+import { ButtonSend } from '../buttonSend';
+
 import './newchat.scss';
-import Input from '../input';
-import ButtonSend from '../buttonSend';
 
 type Props = {
   router: CoreRouter;
   store: Store<AppState>;
   isLoading: boolean;
   user?: User | null;
-  chats?: Chats | null;
+  chats?: ChatsType | null;
   name?: string;
   placeholder?: string;
   onInput?: (e: FocusEvent) => void;
@@ -56,7 +56,7 @@ class NewChat extends Block<Props, Refs> {
     const data = {
       title: `${escape(String((this.refs.inputRef.getContent() as HTMLInputElement).value))}`,
     };
-    this.props.store.dispatch(newchat, data);
+    this.props.store.dispatch(createNewChat, data);
   }
 
   protected render(): string {

@@ -1,13 +1,11 @@
 import {
-  withUser, withStore, withRouter, withIsLoading,
+  withStore, withRouter, withIsLoading,
 } from 'utils';
-import { logout } from 'services/auth';
+import { logout, edit, editAvatar } from 'services';
 import { CoreRouter, Store, Block } from 'core';
-import { sendSubmit } from 'helpers/sendSubmit';
-import { validatingSubmit } from 'helpers/validatingSubmit';
-import { edit, editavatar } from 'services/user';
-import ControlledInput from 'components/controlledInput';
-import ProfilePhoto from 'components/profilePhoto';
+import { sendSubmit, validatingSubmit } from 'helpers';
+import { ControlledInput } from 'components/controlledInput';
+import { ProfilePhoto } from 'components/profilePhoto';
 
 type Props = {
   router: CoreRouter;
@@ -34,7 +32,7 @@ type Refs = {
   passwordInputRef: ControlledInput;
 };
 
-export class ProfilePage extends Block<Props, Refs> {
+class ProfilePage extends Block<Props, Refs> {
   static componentName = 'ProfilePage';
 
   constructor(props: Props) {
@@ -53,8 +51,7 @@ export class ProfilePage extends Block<Props, Refs> {
 
   onEdit() {
     if (this.props.infoButton === 'Edit information') {
-      this.props.disabled = false;
-      this.props.infoButton = 'Save information';
+      this.setProps({ disabled: false, infoButton: 'Save information' });
     } else {
       validatingSubmit(this.refs);
       const data = sendSubmit();
@@ -63,12 +60,11 @@ export class ProfilePage extends Block<Props, Refs> {
           const avatar: any = document.getElementById('avatar');
           const file = avatar.files[0];
 
-          this.props.store.dispatch(editavatar, file);
+          this.props.store.dispatch(editAvatar, file);
         } else {
           this.props.store.dispatch(edit, data);
         }
-        this.props.disabled = true;
-        this.props.infoButton = 'Edit information';
+        this.setProps({ disabled: true, infoButton: 'Edit information' });
       }
     }
   }
@@ -124,10 +120,10 @@ export class ProfilePage extends Block<Props, Refs> {
               <div class="form__top">
                 {{{ProfilePhoto 
                   name="avatar" 
-                  imglink="${process.env.API_ENDPOINT}/resources${user.avatar ? user.avatar : ' '}"
+                  imglink="${process.env.API_ENDPOINT}/resources${user.avatar || '/default-link'}"
                   disabled=${this.props.disabled}
                 }}}
-                {{{Title text="${user.login ? user.login : ' '}"}}}
+                {{{Title text="${user.login || ' '}"}}}
 
                 {{{ControlledInput
                   modifying="profile"
@@ -140,7 +136,7 @@ export class ProfilePage extends Block<Props, Refs> {
                   placeholder="First name"
                   onInput=onInput
                   onFocus=onFocus
-                  value="${user.firstName ? user.firstName : ' '}"
+                  value="${user.firstName || ' '}"
                 }}}
                 {{{ControlledInput
                   modifying="profile"
@@ -153,7 +149,7 @@ export class ProfilePage extends Block<Props, Refs> {
                   placeholder="Second name"
                   onInput=onInput
                   onFocus=onFocus
-                  value="${user.secondName ? user.secondName : ' '}"
+                  value="${user.secondName || ' '}"
                 }}}
                 {{{ControlledInput
                   modifying="profile"
@@ -166,7 +162,7 @@ export class ProfilePage extends Block<Props, Refs> {
                   placeholder="Display name"
                   onInput=onInput
                   onFocus=onFocus
-                  value="${user.displayName ? user.displayName : ' '}"
+                  value="${user.displayName || ' '}"
                 }}}
                 {{{ControlledInput
                   modifying="profile"
@@ -179,7 +175,7 @@ export class ProfilePage extends Block<Props, Refs> {
                   placeholder="Login"  
                   onInput=onInput
                   onFocus=onFocus
-                  value="${user.login ? user.login : ' '}"
+                  value="${user.login || ' '}"
                 }}}
                 {{{ControlledInput
                   modifying="profile"
@@ -193,7 +189,7 @@ export class ProfilePage extends Block<Props, Refs> {
                   onInput=onInput
                   onFocus=onFocus
                   onClick=onClick
-                  value="${user.email ? user.email : ' '}"
+                  value="${user.email || ' '}"
                 }}}
                 {{{ControlledInput
                   modifying="profile"
@@ -206,7 +202,7 @@ export class ProfilePage extends Block<Props, Refs> {
                   placeholder="Phone"  
                   onInput=onInput
                   onFocus=onFocus
-                  value="${user.phone ? user.phone : ' '}"
+                  value="${user.phone || ' '}"
                 }}}
               </div>
 
@@ -225,4 +221,6 @@ export class ProfilePage extends Block<Props, Refs> {
   }
 }
 
-export default withRouter(withStore(withIsLoading(withUser(ProfilePage))));
+const ComposedProfilePage = withRouter(withStore(withIsLoading(ProfilePage)));
+
+export { ComposedProfilePage as ProfilePage };

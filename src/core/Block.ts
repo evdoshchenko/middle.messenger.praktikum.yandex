@@ -1,4 +1,4 @@
-import EventBus from 'core/EventBus';
+import { EventBus } from 'core';
 import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 
@@ -9,7 +9,7 @@ export interface BlockClass<P> extends Function {
   componentName?: string;
 }
 
-export default class Block<P = any, Refs extends Record<string, Block<any>> = {}> {
+export class Block<P = any, Refs extends Record<string, Block<any>> = {}> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -20,7 +20,7 @@ export default class Block<P = any, Refs extends Record<string, Block<any>> = {}
 
   public id = nanoid(6);
 
-  protected _element: Nullable<HTMLElement> = null;
+  private _element: Nullable<HTMLElement> = null;
 
   protected readonly props: P;
 
@@ -50,7 +50,7 @@ export default class Block<P = any, Refs extends Record<string, Block<any>> = {}
     eventBus.emit(Block.EVENTS.INIT, this.props);
   }
 
-  _checkInDom() {
+  private _checkInDom() {
     const elementInDOM = document.body.contains(this._element);
 
     if (elementInDOM) {
@@ -61,7 +61,7 @@ export default class Block<P = any, Refs extends Record<string, Block<any>> = {}
     this.eventBus().emit(Block.EVENTS.FLOW_CWU, this.props);
   }
 
-  _registerEvents(eventBus: EventBus<Events>) {
+  private _registerEvents(eventBus: EventBus<Events>) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -69,11 +69,11 @@ export default class Block<P = any, Refs extends Record<string, Block<any>> = {}
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  _createResources() {
+  private _createResources() {
     this._element = this._createDocumentElement('div');
   }
 
-  protected getStateFromProps(props: any): void {
+  protected getStateFromProps(props: P | undefined): void {
     this.state = {};
   }
 
@@ -82,7 +82,7 @@ export default class Block<P = any, Refs extends Record<string, Block<any>> = {}
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER, this.props);
   }
 
-  _componentDidMount(props: P) {
+  private _componentDidMount(props: P) {
     this._checkInDom();
 
     this.componentDidMount(props);
@@ -90,14 +90,14 @@ export default class Block<P = any, Refs extends Record<string, Block<any>> = {}
 
   componentDidMount(props: P) {}
 
-  _componentWillUnmount() {
+  private _componentWillUnmount() {
     this.eventBus().destroy();
     this.componentWillUnmount();
   }
 
   componentWillUnmount() {}
 
-  _componentDidUpdate(oldProps: P, newProps: P) {
+  private _componentDidUpdate(oldProps: P, newProps: P) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -131,7 +131,7 @@ export default class Block<P = any, Refs extends Record<string, Block<any>> = {}
     return this._element;
   }
 
-  _render() {
+  private _render() {
     const fragment = this._compile();
 
     this._removeEvents();
@@ -161,7 +161,7 @@ export default class Block<P = any, Refs extends Record<string, Block<any>> = {}
     return this.element!;
   }
 
-  _makePropsProxy(props: any): any {
+  private _makePropsProxy(props: any): any {
     const self = this;
 
     return new Proxy(props as unknown as object, {
@@ -176,16 +176,16 @@ export default class Block<P = any, Refs extends Record<string, Block<any>> = {}
         return true;
       },
       deleteProperty() {
-        throw new Error('Нет доступа');
+        throw new Error('No access');
       },
     }) as unknown as P;
   }
 
-  _createDocumentElement(tagName: string) {
+  private _createDocumentElement(tagName: string) {
     return document.createElement(tagName);
   }
 
-  _removeEvents() {
+  private _removeEvents() {
     const { events } = this.props as any;
 
     if (!events || !this._element) {
@@ -198,7 +198,7 @@ export default class Block<P = any, Refs extends Record<string, Block<any>> = {}
     });
   }
 
-  _addEvents() {
+  private _addEvents() {
     const { events } = this.props as any;
 
     if (!events) {
@@ -211,7 +211,7 @@ export default class Block<P = any, Refs extends Record<string, Block<any>> = {}
     });
   }
 
-  _compile(): DocumentFragment {
+  private _compile(): DocumentFragment {
     const fragment = document.createElement('template');
 
     const template = Handlebars.compile(this.render());

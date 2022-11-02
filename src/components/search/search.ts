@@ -1,9 +1,9 @@
-import Block from 'core/Block';
-import validating from 'helpers/validating';
+import { Block } from 'core';
+import { validating } from 'helpers';
+import { Input } from '../input';
+import { ButtonSend } from '../buttonSend';
 
 import './search.scss';
-import Input from '../input';
-import ButtonSend from '../buttonSend';
 
 type IncomingProps = {
   name?: string;
@@ -23,7 +23,7 @@ type Refs = {
   buttonSendRef: ButtonSend;
 };
 
-export default class Search extends Block<Props, Refs> {
+export class Search extends Block<Props, Refs> {
   static componentName = 'Search';
 
   constructor({ ...props }: IncomingProps) {

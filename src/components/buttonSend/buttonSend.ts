@@ -1,4 +1,4 @@
-import Block from 'core/Block';
+import { Block } from 'core';
 
 import './buttonSend.scss';
 import imgSend from 'icons/send.png';
@@ -15,7 +15,7 @@ type Props = {
   }
 };
 
-export default class ButtonSend extends Block<Props> {
+export class ButtonSend extends Block<Props> {
   static componentName = 'ButtonSend';
 
   constructor({

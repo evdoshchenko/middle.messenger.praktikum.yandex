@@ -8,7 +8,7 @@ type Props = {
   onSignIn?: () => void;
 };
 
-export class Error5xxPage extends Block<Props, {}> {
+class Error5xxPage extends Block<Props, {}> {
   static componentName = 'Error5xxPage';
 
   constructor(props: Props) {
@@ -43,4 +43,6 @@ export class Error5xxPage extends Block<Props, {}> {
   }
 }
 
-export default withRouter(withStore(withIsLoading(Error5xxPage)));
+const ComposedError5xxPage = withRouter(withStore(withIsLoading(Error5xxPage)));
+
+export { ComposedError5xxPage as Error5xxPage };

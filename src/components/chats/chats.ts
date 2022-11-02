@@ -1,9 +1,10 @@
-import { withStore, withRouter, withIsLoading } from 'utils';
+import {
+  withStore, withRouter, withIsLoading, transformChats,
+} from 'utils';
 import { CoreRouter, Store, Block } from 'core';
-import { initChats } from 'services/initChats';
-import { chatsAPI } from 'api/chats';
-import Socket from 'services/messages';
-import ChatsItem, { ChatsItemProps } from './chatsItem';
+import { Socket, initChats } from 'services';
+import { chatsAPI, ChatsDTO } from 'api';
+import { ChatsItem } from './chatsItem';
 
 type Props = {
   router: CoreRouter;
@@ -46,9 +47,10 @@ class Chats extends Block<Props, Refs> {
     const currentClass = currentElement.getAttribute('class');
     const chats = document.getElementsByClassName('chats__wrapper');
     const chatsArray = Object.entries(chats);
-    for (let i = 0; i < chatsArray.length; i += 1) {
-      (chatsArray[i][1] as HTMLElement).setAttribute('class', 'chats__wrapper');
-    }
+    chatsArray.forEach((chats) => {
+      const chatsWrapper = chats[1] as HTMLElement;
+      chatsWrapper.setAttribute('class', 'chats__wrapper');
+    });
     currentElement.setAttribute('class', `${currentClass} chats__wrapper-active`);
 
     const id = currentElement.getAttribute('id');
@@ -72,19 +74,21 @@ class Chats extends Block<Props, Refs> {
       });
     }
 
-    chatsAPI.getusers(id!)
+    chatsAPI.getUsers(id!)
       .then((value:any) => {
         this.props.store.dispatch({ users: value });
       });
 
-    const chatId = this.props.store.getState().activeChat?.id!;
-    const userId = this.props.store.getState().user?.id;
+    const state = this.props.store.getState();
+    const chatId = state.activeChat?.id!;
+    const userId = state.user?.id;
     this.socket.connectToWebsocket(userId!, +chatId);
   }
 
   protected render(): string {
-    const { chats } = this.props.store.getState();
-    const chatId = Number(this.props.store.getState().activeChat?.id!);
+    const state = this.props.store.getState();
+    const { chats } = state;
+    const chatId = Number(state.activeChat?.id!);
 
     if (chats === null) {
       return `
@@ -95,21 +99,25 @@ class Chats extends Block<Props, Refs> {
     }
 
     return `
-      <div class="messenger__chats">
-        ${(chats as any).map((chat: ChatsItemProps) => `
+    <div class="messenger__chats">
+    ${(chats as any)
+    .map((chat: ChatsDTO) => transformChats(chat as ChatsDTO))
+    .map((chat: ChatsType) => {
+      return `
         {{{ChatsItem 
-          lastMessage="${chat.last_message ? String(chat.last_message.content) : '...'}"
-          user="${chat.title ? chat.title : '...'}"
-          photo="${chat.avatar ? chat.avatar : ''}"
+          lastMessage="${chat.lastMessage ? String(chat.lastMessage.content) : '...'}"
+          user="${chat.title || '...'}"
+          photo="${chat.avatar || ''}"
           
-          time="${chat.time ? chat.time : ''}"
-          counter="${chat.unread_count}"
-          id="${chat.id ? chat.id : ''}"
+          time="${chat.time || ''}"
+          counter="${chat.unreadCount || ''}"
+          id="${chat.id || ''}"
           active="${(chat.id === chatId) ? chat.id : ''}"
           onClick=onActive
           ref="chats" 
-        }}}`).join('')}
-      </div>
+        }}}`;
+    }).join('')}
+    </div>
     `;
   }
 }

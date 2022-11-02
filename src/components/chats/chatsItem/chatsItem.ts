@@ -1,4 +1,4 @@
-import Block from 'core/Block';
+import { Block } from 'core';
 
 import './chatsItem.scss';
 
@@ -59,7 +59,7 @@ export class ChatsItem extends Block<Props> {
         </div>
         <div class="chats__details">
           {{#if time}}
-            <span class="chats__time">{{time}}</span>
+            <time class="chats__time">{{time}}</time>
           {{else}}
             <span class="chats__time"> </span>
           {{/if}}

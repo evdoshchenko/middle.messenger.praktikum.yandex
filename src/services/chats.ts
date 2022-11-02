@@ -1,5 +1,4 @@
-import { chatsAPI } from 'api/chats';
-import { ChatsDTO } from 'api/types';
+import { chatsAPI, ChatsDTO } from 'api';
 import type { Dispatch } from 'core';
 import { transformChats, apiHasError } from 'utils';
 
@@ -22,14 +21,14 @@ export const me = async (
   dispatch({ isLoading: false, loginFormError: null, chats: transformChats(responseChats as ChatsDTO) });
 };
 
-export const adduser = async (
+export const addUser = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
   action: AddUserPayload,
 ) => {
   dispatch({ isLoading: true });
 
-  const response = await chatsAPI.adduser(action);
+  const response = await chatsAPI.addUser(action);
 
   if (apiHasError(response)) {
     dispatch({ isLoading: false, loginFormError: response.reason });
@@ -38,14 +37,14 @@ export const adduser = async (
   dispatch({ isLoading: false });
 };
 
-export const deleteuser = async (
+export const deleteUser = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
   action: AddUserPayload,
 ) => {
   dispatch({ isLoading: true });
 
-  const response = await chatsAPI.deleteuser(action);
+  const response = await chatsAPI.deleteUser(action);
 
   if (apiHasError(response)) {
     dispatch({ isLoading: false, loginFormError: response.reason });
@@ -54,14 +53,14 @@ export const deleteuser = async (
   dispatch({ isLoading: false });
 };
 
-export const newchat = async (
+export const createNewChat = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
   action: NewChatPayload,
 ) => {
   dispatch({ isLoading: true });
 
-  const response = await chatsAPI.newchat(action);
+  const response = await chatsAPI.newChat(action);
 
   if (apiHasError(response)) {
     dispatch({ isLoading: false, loginFormError: response.reason });

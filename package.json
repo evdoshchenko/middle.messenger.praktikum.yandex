@@ -1,6 +1,6 @@
 {
   "name": "middle.messenger.praktikum.yandex",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "messenger",
   "scripts": {
     "dev": "parcel src/index.html --no-cache",
@@ -8,7 +8,6 @@
     "start": "npm run build && node ./src/server.js",
     "stylelint": "npx stylelint '**/*.scss' --custom-syntax postcss-scss",
     "eslint": "node_modules/.bin/eslint .",
-    "eslint fix": "npm run eslint --fix",
     "lint": "npm run eslint && npm run stylelint",
     "test": "/node_modules/.bin/mocha"
   },

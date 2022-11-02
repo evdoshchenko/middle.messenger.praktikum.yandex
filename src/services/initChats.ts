@@ -1,4 +1,4 @@
-import { chatsAPI } from 'api/chats';
+import { chatsAPI } from 'api';
 import type { Dispatch } from 'core';
 import { apiHasError, transformActiveChat } from 'utils';
 

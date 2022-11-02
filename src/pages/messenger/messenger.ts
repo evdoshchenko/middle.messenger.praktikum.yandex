@@ -1,21 +1,21 @@
 import {
-  withUser, withStore, withRouter, withIsLoading,
+  withStore, withRouter, withIsLoading,
 } from 'utils';
 import { CoreRouter, Store, Block } from 'core';
-import { chatsAPI } from 'api/chats';
-import Socket from 'services/messages';
+import { chatsAPI } from 'api';
+import { Socket } from 'services';
 
 type Props = {
   router: CoreRouter;
   store: Store<AppState>;
   isLoading: boolean;
   user: User | null;
-  chats: Chats | null;
+  chats: ChatsType | null;
   onSignIn?: () => void;
   firstName: string;
   users: string
 };
-export class MessengerPage extends Block<Props, {}> {
+class MessengerPage extends Block<Props, {}> {
   static componentName = 'MessengerPage';
 
   socket = Socket;
@@ -25,21 +25,22 @@ export class MessengerPage extends Block<Props, {}> {
 
     this.setProps({
       chats: this.props.store.getState().chats,
-      firstName: '2',
-      users: '1',
+      firstName: '...',
+      users: '...',
     });
   }
 
   componentDidMount() {
     setTimeout(() => {
-      const id = this.props.store.getState().activeChat?.id!;
-      const response = chatsAPI.getusers(id!);
+      const state = this.props.store.getState();
+      const id = state.activeChat?.id!;
+      const response = chatsAPI.getUsers(id!);
       response.then((value:any) => {
         this.props.store.dispatch({ users: value });
       });
 
-      const chatId = this.props.store.getState().activeChat?.id!;
-      const userId = this.props.store.getState().user?.id;
+      const chatId = state.activeChat?.id!;
+      const userId = state.user?.id;
 
       this.socket.connectToWebsocket(userId!, +chatId);
     }, 1000);
@@ -50,15 +51,13 @@ export class MessengerPage extends Block<Props, {}> {
   }
 
   render() {
-    const { users } = this.props.store.getState();
+    const { users, activeChat } = this.props.store.getState();
     const usersArr = Object.entries({ users })[0][1];
     const newUsers = [];
 
     for (let i = 0; i < usersArr?.length!; i += 1) {
       newUsers!.push(usersArr![i].id);
     }
-
-    const { activeChat } = this.props.store.getState();
 
     return `
     {{#Layout isLoading=true}}
@@ -71,9 +70,9 @@ export class MessengerPage extends Block<Props, {}> {
         </div>
         <div class="messenger__right">
           {{{Contact 
-            firstName="${activeChat?.title ? activeChat?.title : 'Loading...'}"
+            firstName="${activeChat?.title || 'Loading...'}"
             users="Users: ${newUsers !== undefined ? newUsers : '...'}"
-            avatar="${activeChat?.avatar ? activeChat?.avatar : ''}"
+            avatar="${activeChat?.avatar || ''}"
           }}}
           {{{Chat}}}
           {{{Message}}}
@@ -84,4 +83,6 @@ export class MessengerPage extends Block<Props, {}> {
   }
 }
 
-export default withRouter(withStore(withIsLoading(withUser(MessengerPage))));
+const ComposedMessengerPage = withRouter(withStore(withIsLoading(MessengerPage)));
+
+export { ComposedMessengerPage as MessengerPage };

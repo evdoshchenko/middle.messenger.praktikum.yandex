@@ -1,4 +1,4 @@
-import Block from 'core/Block';
+import { Block } from 'core';
 
 import './button.scss';
 
@@ -23,8 +23,7 @@ type Props = {
     click?: () => void;
   }
 };
-
-export default class Button extends Block<Props> {
+export class Button extends Block<Props> {
   static componentName = 'Button';
 
   constructor({

@@ -1,4 +1,4 @@
-import Block from 'core/Block';
+import { Block } from 'core';
 
 import './link.scss';
 
@@ -16,7 +16,7 @@ type Props = {
   }
 };
 
-export default class Link extends Block<Props> {
+export class Link extends Block<Props> {
   static componentName = 'Link';
 
   constructor({

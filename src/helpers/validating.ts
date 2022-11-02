@@ -1,6 +1,6 @@
-import Block from 'core/Block';
+import { Block } from 'core';
 
-export default function validating(e: FocusEvent, refs: { [key: string]: Block<{}> }) {
+export function validating(e: FocusEvent, refs: { [key: string]: Block<{}> }) {
   e.preventDefault();
   const inputEl = e.target as HTMLInputElement;
   const { value } = inputEl;

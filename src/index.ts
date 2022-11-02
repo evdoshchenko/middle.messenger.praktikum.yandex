@@ -2,9 +2,8 @@ import {
   renderDOM, registerComponent, PathRouter, CoreRouter, Store,
 } from 'core';
 import { components } from 'components';
-import SplashScreen from 'pages/splash';
-import { initApp } from 'services/initApp';
-import { initChats } from 'services/initChats';
+import { SplashPage } from 'pages/splash';
+import { initApp, initChats } from 'services';
 import { initRouter } from './router';
 import { defaultState } from './store';
 
@@ -30,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.router = router;
   window.store = store;
 
-  renderDOM(new SplashScreen({}));
+  renderDOM(new SplashPage({}));
 
   store.on('changed', (prevState, nextState) => {
     if (!process.env.DEBUG) {

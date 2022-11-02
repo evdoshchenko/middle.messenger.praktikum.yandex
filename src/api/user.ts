@@ -1,5 +1,5 @@
-import XHRFetch from 'helpers/XHRFetch';
-import { optionsFetch as options } from './types';
+import { XHRFetch } from 'helpers';
+import { optionsFetch as options } from 'api';
 
 type UserRequestData = {
   first_name?: string;
@@ -22,11 +22,11 @@ export const userAPI = {
     (data: UserRequestData) => XHRFetch
       .put('/user/profile', { ...options, data }),
 
-  editpassword:
+  editPassword:
     (data: PasswordRequestData) => XHRFetch
       .put('/user/password', { ...options, data }),
 
-  editavatar:
+  editAvatar:
     (data: UserRequestData) => XHRFetch
       .put('/user/profile/avatar', { ...options, data }),
 };

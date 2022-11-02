@@ -1,12 +1,11 @@
 import { withStore, withRouter, withIsLoading } from 'utils';
 import { CoreRouter, Store, Block } from 'core';
+import { validating, escape } from 'helpers';
+import { Socket } from 'services';
+import { chatsAPI } from 'api';
 import imgAdd from 'icons/add.png';
-import validating from 'helpers/validating';
-import Socket from 'services/messages';
-import { chatsAPI } from 'api/chats';
-import escape from 'helpers/escape';
-import Input from '../input';
-import ButtonSend from '../buttonSend';
+import { Input } from '../input';
+import { ButtonSend } from '../buttonSend';
 
 import './message.scss';
 

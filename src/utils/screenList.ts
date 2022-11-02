@@ -1,11 +1,11 @@
 import { BlockClass } from 'core';
-import SignInPage from 'pages/signin';
-import SignUpPage from 'pages/signup';
-import Error404Page from 'pages/error404';
-import Error5xxPage from 'pages/error5xx';
-import ProfilePage from 'pages/profile';
-import PasswordPage from 'pages/password';
-import MessengerPage from 'pages/messenger';
+import { SignInPage } from 'pages/signin';
+import { SignUpPage } from 'pages/signup';
+import { Error404Page } from 'pages/error404';
+import { Error5xxPage } from 'pages/error5xx';
+import { ProfilePage } from 'pages/profile';
+import { PasswordPage } from 'pages/password';
+import { MessengerPage } from 'pages/messenger';
 
 export enum Screens {
   SignIn = 'signin',

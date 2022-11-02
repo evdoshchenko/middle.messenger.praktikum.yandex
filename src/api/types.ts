@@ -26,9 +26,19 @@ export type ChatsDTO = {
     display_name: string;
     login: string;
     phone: string;
+    content: string;
   }
   time: string;
+};
+
+export type MessageViewDTO = {
+  id: number;
+  chat_id?: number;
   content: string;
+  is_read?: boolean;
+  time: string;
+  type: string;
+  user_id: string;
 };
 
 export const optionsFetch = {
@@ -38,79 +48,3 @@ export const optionsFetch = {
   },
   withCredentials: true,
 };
-
-export type FileDTO = {
-  id: number;
-  user_id: string;
-  path: string;
-  filename: string;
-  content_type: string;
-  content_size: number;
-  upload_date: string;
-};
-
-export class File {
-  id: number;
-
-  userId: string;
-
-  path: string;
-
-  contentType: string;
-
-  uploadDate: string;
-
-  filename: string;
-
-  contentSize: number;
-
-  constructor(dto: FileDTO) {
-    this.id = dto.id;
-    this.userId = dto.user_id;
-    this.path = dto.path;
-    this.contentType = dto.content_type;
-    this.uploadDate = dto.upload_date;
-    this.filename = dto.filename;
-    this.contentSize = dto.content_size;
-  }
-}
-
-export type MessageViewDTO = {
-  id: number;
-  chat_id?: number;
-  content: string;
-  file: Nullable<FileDTO>;
-  is_read?: boolean;
-  time: string;
-  type: string;
-  user_id: string;
-};
-
-export class MessageView {
-  id: number;
-
-  userId: string;
-
-  chatId?: number;
-
-  content: string;
-
-  isRead?: boolean;
-
-  time: Date;
-
-  type: string;
-
-  file: Nullable<File>;
-
-  constructor(dto: MessageViewDTO) {
-    this.id = dto.id;
-    this.userId = dto.user_id;
-    this.chatId = dto.chat_id;
-    this.content = dto.content;
-    this.isRead = dto.is_read;
-    this.time = new Date(dto.time);
-    this.type = dto.type;
-    this.file = dto.file && new File(dto.file);
-  }
-}

@@ -1,9 +1,18 @@
-import XHRFetch from 'helpers/XHRFetch';
-import { optionsFetch as options } from './types';
+import { XHRFetch } from 'helpers';
+import { optionsFetch as options } from 'api';
 
 type LoginRequestData = {
   login: string;
   password: string;
+};
+
+type SignupRequestInput = {
+  first_name: string;
+  second_name: string;
+  login: string;
+  email: string;
+  password: string;
+  phone: string;
 };
 
 export const authAPI = {
@@ -12,7 +21,7 @@ export const authAPI = {
       .post('/auth/signin', { ...options, data }),
 
   signup:
-    (data: LoginRequestData) => XHRFetch
+    (data: SignupRequestInput) => XHRFetch
       .post('/auth/signup', { ...options, data }),
 
   me:

@@ -1,7 +1,5 @@
-import { userAPI } from 'api/user';
-import { authAPI } from 'api/auth';
-import { logout } from 'services/auth';
-import { UserDTO } from 'api/types';
+import { userAPI, authAPI, UserDTO } from 'api';
+import { logout } from 'services';
 import type { Dispatch } from 'core';
 import { transformUser, apiHasError } from 'utils';
 
@@ -45,14 +43,14 @@ export const edit = async (
   dispatch({ isLoading: false, user: transformUser(responseUser as UserDTO) });
 };
 
-export const editavatar = async (
+export const editAvatar = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
   action: UserPayload,
 ) => {
   dispatch({ isLoading: true });
 
-  const response = await userAPI.editavatar(action);
+  const response = await userAPI.editAvatar(action);
 
   if (apiHasError(response)) {
     dispatch({ isLoading: false, loginFormError: response.reason });
@@ -71,14 +69,14 @@ export const editavatar = async (
   dispatch({ isLoading: false, user: transformUser(responseUser as UserDTO) });
 };
 
-export const editpassword = async (
+export const editPassword = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
   action: PasswordPayload,
 ) => {
   dispatch({ isLoading: true });
 
-  const response = await userAPI.editpassword(action);
+  const response = await userAPI.editPassword(action);
 
   if (apiHasError(response)) {
     dispatch({ isLoading: false, loginFormError: response.reason });

@@ -1,12 +1,10 @@
 import {
-  withUser, withStore, withRouter, withIsLoading,
+  withStore, withRouter, withIsLoading,
 } from 'utils';
 import { CoreRouter, Store, Block } from 'core';
-
-import { sendSubmit } from 'helpers/sendSubmit';
-import { validatingSubmit } from 'helpers/validatingSubmit';
-import ControlledInput from 'components/controlledInput';
-import { editpassword } from 'services/user';
+import { sendSubmit, validatingSubmit } from 'helpers';
+import { ControlledInput } from 'components/controlledInput';
+import { editPassword } from 'services';
 
 type Props = {
   router: CoreRouter;
@@ -23,7 +21,7 @@ type Refs = {
   confirmPasswordInputRef: ControlledInput;
 };
 
-export class PasswordPage extends Block<Props, Refs> {
+class PasswordPage extends Block<Props, Refs> {
   constructor(props: Props) {
     super(props);
 
@@ -36,13 +34,14 @@ export class PasswordPage extends Block<Props, Refs> {
     validatingSubmit(this.refs);
     if (sendSubmit()) {
       const data = sendSubmit();
-      this.props.store.dispatch(editpassword, data);
+      this.props.store.dispatch(editPassword, data);
     }
   }
 
   render() {
-    const { user } = this.props.store.getState();
-    const error = this.props.store.getState().loginFormError;
+    const state = this.props.store.getState();
+    const { user } = state;
+    const error = state.loginFormError;
 
     if (!user) {
       return `
@@ -65,10 +64,10 @@ export class PasswordPage extends Block<Props, Refs> {
               <div class="form__top">
                 {{{ProfilePhoto 
                   name="avatar" 
-                  imglink="https://ya-praktikum.tech/api/v2/resources${user.avatar ? user.avatar : ' '}"
+                  imglink="${process.env.API_ENDPOINT}/resources${user.avatar || ' '}"
                   disabled=true
                 }}}
-                {{{Title text="${user.login ? user.login : ' '}"}}}
+                {{{Title text="${user.login || ' '}"}}}
                 {{{Subtitle text="${error !== null ? error : ''}"}}}
 
                 {{{ControlledInput
@@ -108,4 +107,6 @@ export class PasswordPage extends Block<Props, Refs> {
   }
 }
 
-export default withRouter(withStore(withIsLoading(withUser(PasswordPage))));
+const ComposedPasswordPage = withRouter(withStore(withIsLoading(PasswordPage)));
+
+export { ComposedPasswordPage as PasswordPage };

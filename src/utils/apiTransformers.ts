@@ -1,4 +1,4 @@
-import { UserDTO, ChatsDTO } from 'api/types';
+import { UserDTO, ChatsDTO } from 'api';
 
 export const transformUser = (data: UserDTO): User => {
   return {
@@ -13,15 +13,14 @@ export const transformUser = (data: UserDTO): User => {
   };
 };
 
-export const transformChats = (data: ChatsDTO): Chats => {
+export const transformChats = (data: ChatsDTO): ChatsType => {
   return {
     id: data.id,
     title: data.title,
     avatar: data.avatar,
-    unread_count: data.unread_count,
-    last_message: data.last_message,
+    unreadCount: data.unread_count,
+    lastMessage: data.last_message,
     time: data.time,
-    content: data.content,
   };
 };
 
@@ -29,6 +28,17 @@ export const transformActiveChat = (data: any): any => {
   return {
     id: data[0].id,
     title: data[0].title,
-    avatar: `${process.env.API_ENDPOINT}/resources${data[0].avatar}`,
+  };
+};
+
+export const transformMessageView = (data: any) => {
+  return {
+    id: data.id,
+    chatId: data.chat_id,
+    content: data.content,
+    isRead: data.is_read,
+    time: new Date(data.time),
+    type: data.type,
+    userId: data.user_id,
   };
 };

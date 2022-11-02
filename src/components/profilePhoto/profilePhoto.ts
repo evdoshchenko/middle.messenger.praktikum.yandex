@@ -1,4 +1,4 @@
-import Block from 'core/Block';
+import { Block } from 'core';
 
 import './profilePhoto.scss';
 
@@ -10,7 +10,7 @@ type IncomingProps = {
 
 type Props = IncomingProps;
 
-export default class ProfilePhoto extends Block<Props> {
+export class ProfilePhoto extends Block<Props> {
   static componentName = 'ProfilePhoto';
 
   constructor({ name, imglink, disabled }: IncomingProps) {

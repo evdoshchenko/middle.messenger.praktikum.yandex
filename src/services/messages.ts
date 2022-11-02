@@ -1,6 +1,7 @@
-import EventBus from 'core/EventBus';
-import XHRFetch from 'helpers/XHRFetch';
-import { MessageView, MessageViewDTO } from 'api/types';
+import { EventBus } from 'core';
+import { XHRFetch } from 'helpers';
+import { MessageViewDTO } from 'api';
+import { transformMessageView } from 'utils';
 
 class Socket extends EventBus {
   websocket?: WebSocket;
@@ -27,34 +28,37 @@ class Socket extends EventBus {
         });
 
         ws.addEventListener('message', (e) => {
-          const data = JSON.parse(e.data);
-          console.info('Data received', { data });
+          try {
+            const data = JSON.parse(e.data);
+            console.info('Data received', { data });
 
-          if (Array.isArray(data)) {
-            const filteredMessages = data.filter((message: any) => message.content) || [];
-            const messages = filteredMessages
-              .map((dto: MessageViewDTO) => new MessageView(dto))
-              .sort((a, b) => b.id - a.id);
+            if (Array.isArray(data)) {
+              const filteredMessages = data.filter((message: any) => message.content) || [];
+              const messages = filteredMessages
+                .map((data) => transformMessageView(data as MessageViewDTO))
+                .sort((a, b) => b.id - a.id);
 
-            window.store.dispatch({
-              messages,
-            });
+              window.store.dispatch({
+                messages,
+              });
+              return;
+            }
 
-            return;
-          }
+            if (
+              data.type === 'user connected'
+              || data.type === 'pong'
+              || !data.content
+            ) {
+              return;
+            }
 
-          if (
-            data.type === 'user connected'
-            || data.type === 'pong'
-            || !data.content
-          ) {
-            return;
-          }
-
-          if (data.type === 'message' && data.content) {
-            window.store.dispatch({
-              messages: [...window.store.getState().messages, new MessageView(data)],
-            });
+            if (data.type === 'message' && data.content) {
+              window.store.dispatch({
+                messages: this.getMessages(),
+              });
+            }
+          } catch (err) {
+            console.error(err);
           }
         });
       });
@@ -76,4 +80,6 @@ class Socket extends EventBus {
   }
 }
 
-export default new Socket();
+const ComposedSocket = new Socket();
+
+export { ComposedSocket as Socket };

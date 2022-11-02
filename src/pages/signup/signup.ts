@@ -1,9 +1,8 @@
 import { withStore, withRouter, withIsLoading } from 'utils';
 import { CoreRouter, Store, Block } from 'core';
-import { sendSubmit } from 'helpers/sendSubmit';
-import { validatingSubmit } from 'helpers/validatingSubmit';
-import ControlledInput from 'components/controlledInput';
-import { signup } from 'services/auth';
+import { sendSubmit, validatingSubmit } from 'helpers';
+import { signup } from 'services';
+import { ControlledInput } from 'components/controlledInput';
 
 type Props = {
   router: CoreRouter;
@@ -26,7 +25,7 @@ type Refs = {
   passwordInputConfirmRef: ControlledInput;
 };
 
-export class SignupPage extends Block<Props, Refs> {
+class SignUpPage extends Block<Props, Refs> {
   constructor(props: Props) {
     super(props);
 
@@ -148,4 +147,6 @@ export class SignupPage extends Block<Props, Refs> {
   }
 }
 
-export default withRouter(withStore(withIsLoading(SignupPage)));
+const ComposedSignUpPage = withRouter(withStore(withIsLoading(SignUpPage)));
+
+export { ComposedSignUpPage as SignUpPage };

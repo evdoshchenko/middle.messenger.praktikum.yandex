@@ -1,4 +1,4 @@
-import Block from 'core/Block';
+import { Block } from 'core';
 
 import './input.scss';
 
@@ -28,7 +28,7 @@ type Props = {
   }
 };
 
-export default class Input extends Block<Props> {
+export class Input extends Block<Props> {
   static componentName = 'Input';
 
   constructor({

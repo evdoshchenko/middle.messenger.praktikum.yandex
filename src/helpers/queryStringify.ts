@@ -2,10 +2,10 @@ export function queryStringify(data: { [s: string]: unknown; } | ArrayLike<unkno
   let strResult = '?';
   const items = Object.entries(data);
 
-  for (let i = 0; i < items.length; i += 1) {
+  items.forEach((item, i) => {
     strResult += (strResult !== '?') ? '&' : '';
-    strResult += Array.isArray(items[i]) ? `${i}=${items[i].toString()}` : `${i}=${items[i]}`;
-  }
+    strResult += Array.isArray(item) ? `${i}=${item.toString()}` : `${i}=${item}`;
+  });
 
   return strResult;
 }

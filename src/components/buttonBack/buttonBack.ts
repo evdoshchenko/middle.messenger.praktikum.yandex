@@ -4,10 +4,7 @@ import { withStore, withRouter, withIsLoading } from 'utils';
 import './buttonBack.scss';
 import IconBack from 'icons/back.png';
 
-type IncomingProps = {
-};
-
-type Props = IncomingProps & {
+type Props = {
   router: CoreRouter;
   store: Store<AppState>;
   isLoading: boolean;

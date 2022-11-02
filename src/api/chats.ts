@@ -1,5 +1,5 @@
-import XHRFetch from 'helpers/XHRFetch';
-import { optionsFetch as options } from './types';
+import { XHRFetch } from 'helpers';
+import { optionsFetch as options } from 'api';
 
 type AddUserRequestData = {
   users: Array<string>;
@@ -15,19 +15,19 @@ export const chatsAPI = {
     () => XHRFetch
       .get('/chats'),
 
-  newchat:
+  newChat:
     (data: NewChatRequestData) => XHRFetch
       .post('/chats', { ...options, data }),
 
-  getusers:
+  getUsers:
     (data: string) => XHRFetch
       .get(`/chats/${data}/users`),
 
-  adduser:
+  addUser:
     (data: AddUserRequestData) => XHRFetch
       .put('/chats/users', { ...options, data }),
 
-  deleteuser:
+  deleteUser:
     (data: AddUserRequestData) => XHRFetch
       .delete('/chats/users', { ...options, data }),
 };

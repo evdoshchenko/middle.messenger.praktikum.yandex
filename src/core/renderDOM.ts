@@ -1,6 +1,6 @@
-import Block from 'core/Block';
+import { Block } from 'core';
 
-export default function renderDOM(block: Block) {
+export function renderDOM(block: Block) {
   const root = document.querySelector('#app');
 
   root!.innerHTML = '';

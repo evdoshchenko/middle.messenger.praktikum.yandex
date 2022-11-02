@@ -1,12 +1,12 @@
 import { withStore, withRouter, withIsLoading } from 'utils';
 import { CoreRouter, Store, Block } from 'core';
-import { chatsAPI } from 'api/chats';
-import { validatingSubmit } from 'helpers/validatingSubmit';
-import { adduser, deleteuser } from 'services/chats';
+import { chatsAPI } from 'api';
+import { validatingSubmit } from 'helpers';
+import { addUser, deleteUser } from 'services';
+import { ControlledInput } from 'components/controlledInput';
 
 import './contact.scss';
 import imgDetails from 'icons/details.png';
-import ControlledInput from 'components/controlledInput';
 
 type Props = {
   firstName?: string;
@@ -17,7 +17,7 @@ type Props = {
   store: Store<AppState>;
   isLoading: boolean;
   user?: User | null;
-  chats?: Chats | null;
+  chats?: ChatsType | null;
   onActive?: (e: FocusEvent) => void;
   active?: boolean;
   onDelete?: () => void;
@@ -46,8 +46,9 @@ class Contact extends Block<Props, Refs> {
   onDelete() {
     validatingSubmit(this.refs);
 
+    const state = this.props.store.getState();
     const userId: String = (this.refs.userRef.refs.inputRef.getContent() as HTMLInputElement).value;
-    const chatId = this.props.store.getState().activeChat?.id;
+    const chatId = state.activeChat?.id;
     const data = {
       users: [
         userId,
@@ -56,7 +57,7 @@ class Contact extends Block<Props, Refs> {
     };
 
     if (data) {
-      this.props.store.dispatch(deleteuser, data);
+      this.props.store.dispatch(deleteUser, data);
 
       this.updateUsers();
     }
@@ -65,8 +66,9 @@ class Contact extends Block<Props, Refs> {
   onAdd() {
     validatingSubmit(this.refs);
 
+    const state = this.props.store.getState();
     const userId: String = (this.refs.userRef.refs.inputRef.getContent() as HTMLInputElement).value;
-    const chatId = this.props.store.getState().activeChat?.id;
+    const chatId = state.activeChat?.id;
 
     const data = {
       users: [
@@ -76,22 +78,23 @@ class Contact extends Block<Props, Refs> {
     };
 
     if (data) {
-      this.props.store.dispatch(adduser, data);
+      this.props.store.dispatch(addUser, data);
       this.updateUsers();
     }
   }
 
   async updateUsers() {
+    const state = this.props.store.getState();
     this.props.store.dispatch({ isLoading: true });
-    const response:any = await chatsAPI.getusers(this.props.store.getState().activeChat?.id!);
+    const response:any = await chatsAPI.getUsers(state.activeChat?.id!);
     this.props.store.dispatch({ users: response, isLoading: false });
   }
 
   onDetails() {
     if (!this.props.moduleDetails) {
-      this.props.moduleDetails = '_active';
+      this.setProps({ moduleDetails: '_active' });
     } else {
-      this.props.moduleDetails = '';
+      this.setProps({ moduleDetails: '' });
     }
   }
 

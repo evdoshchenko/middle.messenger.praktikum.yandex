@@ -33,14 +33,26 @@ declare global {
 
   export type Users = Array<User>;
 
-  export type Chats = {
+  export type ChatsType = {
     id: number,
     title: string,
     avatar: string,
-    unread_count: string,
-    last_message: {},
+    unreadCount: string,
+    lastMessage?: {
+      content?: string | null,
+    },
     time: string,
-    content: string,
+  };
+
+  export type MessageView = {
+    id: number;
+    userId: string;
+    chatId?: number;
+    content: string;
+    isRead?: boolean;
+    time: Date;
+    type: string;
+    file: Nullable<File>;
   };
 }
 

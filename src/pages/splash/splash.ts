@@ -13,5 +13,3 @@ export class SplashPage extends Block<SplashPageProps> {
     `;
   }
 }
-
-export default SplashPage;

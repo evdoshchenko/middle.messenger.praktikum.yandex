@@ -1,4 +1,4 @@
-import Block from 'core/Block';
+import { Block } from 'core';
 
 import './title.scss';
 
@@ -8,7 +8,7 @@ type IncomingProps = {
 
 type Props = IncomingProps;
 
-export default class Title extends Block<Props> {
+export class Title extends Block<Props> {
   static componentName = 'Title';
 
   constructor({ text }: IncomingProps) {

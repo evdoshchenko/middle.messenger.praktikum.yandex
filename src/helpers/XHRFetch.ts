@@ -1,4 +1,3 @@
-import { queryStringify } from './queryStringify';
 import { METHOD } from './types';
 
 type Options = {
@@ -15,7 +14,7 @@ const METHODS = {
   DELETE: 'DELETE',
 };
 
-export class XHRFetch {
+class XHRFetch {
   get = (url: string, options: Options = {}) => {
     return this
       .request(url, { ...options, method: METHODS.GET });
@@ -43,10 +42,7 @@ export class XHRFetch {
       const xhr = new XMLHttpRequest();
       const formData = new FormData();
 
-      const urlData = METHODS.GET && data
-        ? url + queryStringify(data)
-        : url;
-      xhr.open(method, `https://ya-praktikum.tech/api/v2${urlData}`);
+      xhr.open(method, `${process.env.API_ENDPOINT}${url}`);
 
       if (!(data instanceof File)) {
         xhr.setRequestHeader('Content-Type', 'application/json');
@@ -81,4 +77,6 @@ export class XHRFetch {
   };
 }
 
-export default new XHRFetch();
+const ComposedXHRFetch = new XHRFetch();
+
+export { ComposedXHRFetch as XHRFetch };
