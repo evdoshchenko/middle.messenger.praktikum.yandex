@@ -1,13 +1,13 @@
-import { METHOD } from './types';
+import { Method } from './types';
 
 type Options = {
-  method?: METHOD;
+  method?: Method;
   timeout?: number;
   data?: unknown;
   headers?: Record<string, string>;
 };
 
-const METHODS = {
+export const Methods = {
   GET: 'GET',
   PUT: 'PUT',
   POST: 'POST',
@@ -17,22 +17,22 @@ const METHODS = {
 class XHRFetch {
   get = (url: string, options: Options = {}) => {
     return this
-      .request(url, { ...options, method: METHODS.GET });
+      .request(url, { ...options, method: Methods.GET });
   };
 
   post = (url: string, options: Options = {}) => {
     return this
-      .request(url, { ...options, method: METHODS.POST });
+      .request(url, { ...options, method: Methods.POST });
   };
 
   put = (url: string, options: Options = {}) => {
     return this
-      .request(url, { ...options, method: METHODS.PUT });
+      .request(url, { ...options, method: Methods.PUT });
   };
 
   delete = (url: string, options: Options = {}) => {
     return this
-      .request(url, { ...options, method: METHODS.DELETE });
+      .request(url, { ...options, method: Methods.DELETE });
   };
 
   request = (url: string, options: { method: any; data?: any }, timeout = 5000) => {
@@ -43,6 +43,7 @@ class XHRFetch {
       const formData = new FormData();
 
       xhr.open(method, `${process.env.API_ENDPOINT}${url}`);
+      // xhr.open(method, `${url}`);
 
       if (!(data instanceof File)) {
         xhr.setRequestHeader('Content-Type', 'application/json');
@@ -54,11 +55,16 @@ class XHRFetch {
       xhr.timeout = timeout;
       xhr.withCredentials = true;
       xhr.onload = () => {
-        if (xhr.status >= 300) {
+        if (xhr.status < 400) {
           resolve(xhr.response);
         } else {
-          resolve(xhr.response);
+          reject(xhr.response);
         }
+        // if (xhr.status >= 300) {
+        //   resolve(xhr.response);
+        // } else {
+        //   resolve(xhr.response);
+        // }
       };
 
       xhr.ontimeout = reject;
@@ -66,7 +72,7 @@ class XHRFetch {
       xhr.onerror = reject;
       xhr.responseType = 'json';
 
-      if (method === METHODS.GET) {
+      if (method === Methods.GET) {
         xhr.send();
       } else if (data instanceof File) {
         xhr.send(formData);

@@ -2,7 +2,7 @@ import { withStore, withRouter, withIsLoading } from 'utils';
 import { CoreRouter, Store, Block } from 'core';
 import { sendSubmit, validatingSubmit } from 'helpers';
 import { signup } from 'services';
-import { ControlledInput } from 'components/controlledInput';
+import { ControlledInput } from 'components';
 
 type Props = {
   router: CoreRouter;

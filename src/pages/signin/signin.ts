@@ -2,8 +2,7 @@ import { withStore, withRouter, withIsLoading } from 'utils';
 import { CoreRouter, Store, Block } from 'core';
 import { login, initChats } from 'services';
 import { sendSubmit, validatingSubmit } from 'helpers';
-import { ControlledInput } from 'components/controlledInput';
-import { Link } from 'components/link';
+import { ControlledInput, Link } from 'components';
 
 type Props = {
   router: CoreRouter;
@@ -51,7 +50,7 @@ class SignInPage extends Block<Props, Refs> {
 
     return `
     {{#Layout isLoading=true}}
-      <div class="form__wrapper">
+      <div class="form__wrapper" data-testid="onboarding-screen">
         <form class="form form-signin">
           <div class="form__top">
 

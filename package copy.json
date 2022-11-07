@@ -23,8 +23,7 @@
     "data": "./src/data",
     "utils": "./src/utils",
     "api": "./src/api",
-    "services": "./src/services",
-    "tests": "./src/tests"
+    "services": "./src/services"
   },
   "keywords": [],
   "repository": {
@@ -39,6 +38,8 @@
     "@babel/preset-env": "7.19.4",
     "@babel/preset-typescript": "7.18.6",
     "@parcel/transformer-sass": "2.7.0",
+    "@testing-library/dom": "^8.19.0",
+    "@testing-library/jest-dom": "^5.16.5",
     "@types/chai": "4.3.3",
     "@types/jest": "27.5.2",
     "@types/mocha": "10.0.0",
@@ -48,32 +49,53 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "6.24.1",
     "chai": "4.3.6",
+    "dotenv": "^16.0.3",
     "eslint": "8.24.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "27.5.1",
     "mocha": "10.1.0",
+    "msw": "^0.47.4",
     "parcel": "2.7.0",
     "postcss": "8.4.17",
     "postcss-scss": "4.0.5",
     "process": "0.11.10",
-
     "sass": "1.55.0",
     "stylelint": "14.13.0",
     "stylelint-scss": "4.3.0",
-    "typescript": "4.8.3"
+    "typescript": "4.8.3",
+    "whatwg-fetch": "^3.6.2"
   },
   "dependencies": {
-    "@testing-library/dom": "^8.19.0",
-    "@testing-library/jest-dom": "^5.16.5",
     "babel-core": "6.26.3",
     "express": "4.18.1",
     "handlebars": "4.7.7",
-    "msw": "^0.47.4",
-    "nanoid": "^3.3.1",
-    "whatwg-fetch": "^3.6.2",
-    "regenerator-runtime": "^0.13.10",
-    "dotenv": "^16.0.3"
+    "nanoid": "^3.3.1"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFiles": [
+      "<rootDir>/src/tests/setupEnv.ts"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/tests/setup.ts"
+    ],
+    "moduleNameMapper": {
+      "^src(.*)$": "<rootDir>/src$1",
+      "^store(.*)$": "<rootDir>/src/store$1",
+      "^components(.*)$": "<rootDir>/src/components$1",
+      "^core(.*)$": "<rootDir>/src/core$1",
+      "^helpers(.*)$": "<rootDir>/src/helpers$1",
+      "^pages(.*)$": "<rootDir>/src/pages$1",
+      "^images(.*)$": "<rootDir>/src/images$1",
+      "^icons(.*)$": "<rootDir>/src/icons$1",
+      "^data(.*)$": "<rootDir>/src/data$1",
+      "^utils(.*)$": "<rootDir>/src/utils$1",
+      "^api(.*)$": "<rootDir>/src/api$1",
+      "^services(.*)$": "<rootDir>/src/services$1",
+      "\\.(scss)$": "identity-obj-proxy",
+      "\\.(png)$": "identity-obj-proxy"
+    }
   }
 }

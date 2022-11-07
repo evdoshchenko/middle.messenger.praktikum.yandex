@@ -45,3 +45,25 @@ export const components: BlockConstructable[] = [
   Logo,
   NewChat,
 ];
+
+export { Button } from './button';
+export { Link } from './link';
+export { Input } from './input';
+export { InputError } from './inputError';
+export { ControlledInput } from './controlledInput';
+export { Layout } from './layout';
+export { Title } from './title';
+export { Subtitle } from './subtitle';
+export { ButtonBack } from './buttonBack';
+export { ProfilePhoto } from './profilePhoto';
+export { Search } from './search';
+export { Tabs } from './tabs';
+export { Chats } from './chats';
+export { ChatsItem } from './chats/chatsItem';
+export { Contact } from './contact';
+export { Chat } from './chat';
+export { ChatItem } from './chat/chatItem';
+export { Message } from './message';
+export { ButtonSend } from './buttonSend';
+export { Logo } from './logo';
+export { NewChat } from './newChat';

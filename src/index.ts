@@ -9,6 +9,8 @@ import { defaultState } from './store';
 
 import './styles/index.scss';
 
+import 'regenerator-runtime/runtime';
+
 require('babel-core/register');
 
 components.forEach((component) => {

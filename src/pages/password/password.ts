@@ -3,7 +3,7 @@ import {
 } from 'utils';
 import { CoreRouter, Store, Block } from 'core';
 import { sendSubmit, validatingSubmit } from 'helpers';
-import { ControlledInput } from 'components/controlledInput';
+import { ControlledInput } from 'components';
 import { editPassword } from 'services';
 
 type Props = {

@@ -3,7 +3,7 @@ import { CoreRouter, Store, Block } from 'core';
 import { chatsAPI } from 'api';
 import { validatingSubmit } from 'helpers';
 import { addUser, deleteUser } from 'services';
-import { ControlledInput } from 'components/controlledInput';
+import { ControlledInput } from 'components';
 
 import './contact.scss';
 import imgDetails from 'icons/details.png';
