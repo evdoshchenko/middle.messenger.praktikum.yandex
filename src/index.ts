@@ -11,7 +11,7 @@ import './styles/index.scss';
 
 import 'regenerator-runtime/runtime';
 
-require('babel-core/register');
+// require('babel-core/register');
 
 components.forEach((component) => {
   registerComponent(component);

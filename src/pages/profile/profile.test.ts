@@ -1,4 +1,4 @@
-import { getByTestId, queryByTestId, waitFor } from '@testing-library/dom'
+import { getByTestId, queryByTestId, waitFor } from '@testing-library/dom';
 import { renderBlock, step } from 'tests';
 import { ProfilePage } from './profile';
 
@@ -13,12 +13,18 @@ const USER_MOCK = {
   secondName: 'login',
 };
 
+// type RenderBlockParams<T> = {
+//   Block: BlockClass<T>;
+//   props: T;
+//   state?: Partial<AppState>;
+// };
+
 describe('pages/Profile', () => {
   it('should logout from profile and redirect to onboarding', async () => {
     await step('render profile page to dom', () => {
       renderBlock({
         Block: ProfilePage,
-        props: {},
+        props: undefined,
         state: {
           screen: 'profile',
           appIsInited: true,
@@ -33,9 +39,7 @@ describe('pages/Profile', () => {
     });
 
     await step('wait openning onboarding page', async () => {
-      await waitFor(() =>
-        expect(queryByTestId(document.body, 'onboarding-screen')).toBeInTheDocument()
-      );
+      await waitFor(() => expect(queryByTestId(document.body, 'onboarding-screen')).toBeInTheDocument());
     });
 
     await step('check state', async () => {

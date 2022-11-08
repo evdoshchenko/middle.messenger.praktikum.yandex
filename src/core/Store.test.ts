@@ -18,6 +18,6 @@ describe('score/Store', () => {
     store.set({ userId: 123 });
 
     expect(mock).toHaveBeenCalled();
-    expect(mock).toHaveBeenCalledWith({ userId: -1 }, { userId: 123 })
+    expect(mock).toHaveBeenCalledWith({ userId: -1 }, { userId: 123 });
   });
 });

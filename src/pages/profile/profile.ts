@@ -119,7 +119,7 @@ class ProfilePage extends Block<Props, Refs> {
               <div class="form__top">
                 {{{ProfilePhoto 
                   name="avatar" 
-                  imglink="${process.env.API_ENDPOINT}/resources${user.avatar || '/default-link'}"
+                  imglink="${process.env.IMG_ENDPOINT}${user.avatar || '/default-link'}"
                   disabled=${this.props.disabled}
                 }}}
                 {{{Title text="${user.login || ' '}"}}}

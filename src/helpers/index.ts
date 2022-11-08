@@ -4,7 +4,7 @@ export { escape } from './escape';
 export { queryStringify } from './queryStringify';
 export { regExps } from './regExps';
 export { sendSubmit } from './sendSubmit';
-export { ValidateType, METHOD } from './types';
+export { ValidateType, Method } from './types';
 export { validateForm } from './validateForm';
 export { validating } from './validating';
 export { validatingSubmit } from './validatingSubmit';

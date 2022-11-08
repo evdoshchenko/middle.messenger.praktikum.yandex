@@ -10,7 +10,7 @@ import { initRouter } from '../router';
 
 type RenderBlockParams<T> = {
   Block: BlockClass<T>;
-  props: T;
+  props: T | undefined;
   state?: Partial<AppState>;
 };
 

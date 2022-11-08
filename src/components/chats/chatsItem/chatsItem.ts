@@ -47,7 +47,7 @@ export class ChatsItem extends Block<Props> {
         <div class="chats__data">
           <div class="chats__photo">
             {{#if photo}}
-            <img src="${process.env.API_ENDPOINT}/resources{{photo}}" alt="cage" width="60px" height="60px"></img>
+            <img src="${process.env.IMG_ENDPOINT}{{photo}}" alt="cage" width="60px" height="60px"></img>
             {{else}}
             
             {{/if}}

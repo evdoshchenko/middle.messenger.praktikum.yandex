@@ -64,7 +64,7 @@ class PasswordPage extends Block<Props, Refs> {
               <div class="form__top">
                 {{{ProfilePhoto 
                   name="avatar" 
-                  imglink="${process.env.API_ENDPOINT}/resources${user.avatar || ' '}"
+                  imglink="${process.env.IMG_ENDPOINT}${user.avatar || ' '}"
                   disabled=true
                 }}}
                 {{{Title text="${user.login || ' '}"}}}
