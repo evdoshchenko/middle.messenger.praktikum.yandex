@@ -1,4 +1,4 @@
-import Block from 'core/Block';
+import { Block } from 'core';
 
 import './buttonSend.scss';
 import imgSend from 'icons/send.png';
@@ -29,7 +29,7 @@ export class ButtonSend extends Block<Props> {
   protected render(): string {
     return `
     <div 
-      class="button-send {{#if sendable}}sendable{{/if}} button-icons">
+      class="button-send {{#if sendable}}sendable{{/if}}">
       <img src="${imgSend}" alt="details" width="40px" height="40px"></img>
     </div> 
     `;

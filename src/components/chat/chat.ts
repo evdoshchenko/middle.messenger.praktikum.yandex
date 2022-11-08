@@ -1,30 +1,39 @@
-import Block from 'core/Block';
-
-import messages from 'data/messages.json';
+import {
+  withStore, withRouter, withIsLoading,
+} from 'utils';
+import { CoreRouter, Store, Block } from 'core';
 import { ChatItemProps } from './chatItem';
 
-type IncomingProps = {
+type Props = {
+  router: CoreRouter;
+  store: Store<AppState>;
+  isLoading: boolean;
+  user?: User | null;
+  chats?: ChatsType | null;
+  ws?: Nullable<WebSocket>;
+  messages?: any | null;
 };
 
-type Props = IncomingProps;
-
-export class Chat extends Block<Props> {
+class Chat extends Block<Props> {
   static componentName = 'Chat';
 
-  constructor({ ...props }: IncomingProps) {
-    super({ ...props });
-  }
-
   protected render(): string {
+    const state = this.props.store.getState();
+    const messages = state.messages || [];
+
     return `
       <div class="messenger__chat">
-        ${messages.data.map((message: ChatItemProps) => `
+        ${messages.map((message: ChatItemProps) => `
         {{{ChatItem 
-          type="${message.type}"
-          photo="${message.photo ? message.photo : ''}"
-          text="${message.text ? message.text : ''}"
+          type="${(message.userId === state.user?.id) ? 'out' : 'in'}"
+          photo="${message.photo || ''}"
+          text="${message.content || ''}"
         }}}`).join('')}
       </div>
     `;
   }
 }
+
+const ComposedChat = withRouter(withStore(withIsLoading(Chat)));
+
+export { ComposedChat as Chat };

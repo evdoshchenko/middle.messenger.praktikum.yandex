@@ -1,16 +1,24 @@
-import Block from 'core/Block';
+import { withStore, withRouter, withIsLoading } from 'utils';
+import { CoreRouter, Store, Block } from 'core';
+import { validating, escape } from 'helpers';
+import { Socket } from 'services';
+import { chatsAPI } from 'api';
 import imgAdd from 'icons/add.png';
-import validating from 'helpers/validating';
-import Input from '../input';
-import ButtonSend from '../buttonSend';
+import { Input } from '../input';
+import { ButtonSend } from '../buttonSend';
 
 import './message.scss';
 
 type Props = {
+  router: CoreRouter;
+  store: Store<AppState>;
+  isLoading: boolean;
+  ws?: Nullable<WebSocket>;
   onInput?: (e: FocusEvent) => void;
   onFocus?: (e: FocusEvent) => void;
   onBlur?: (e: FocusEvent) => void;
   onSubmit?: (e: FocusEvent) => void;
+  onSendMessage?: () => void;
   sendable?: boolean;
 };
 
@@ -19,14 +27,17 @@ type Refs = {
   buttonSendRef: ButtonSend;
 };
 
-export class Message extends Block<Props, Refs> {
+class Message extends Block<Props, Refs> {
   static componentName = 'Message';
 
-  constructor() {
-    super();
+  socket = Socket;
+
+  constructor(props: Props) {
+    super(props);
 
     this.setProps({
       sendable: true,
+      onSendMessage: () => this.onSendMessage(),
       onFocus: (e: FocusEvent) => {
         validating(e, this.refs);
       },
@@ -38,10 +49,27 @@ export class Message extends Block<Props, Refs> {
       },
       onSubmit: (e: FocusEvent) => {
         e.preventDefault();
-        // Пока больше некуда выводить для проверки рабоспособности. Я по ТЗ и для инпута добавил:
-        // "Сделайте сбор данных из формы. В console.log должен выводиться объект со всеми заполненными полями формы."
-        console.log((this.refs.inputRef.getContent() as HTMLInputElement).value);
+        const data = (this.refs.inputRef.getContent() as HTMLInputElement).value;
+        console.log(data);
+        this.props.store.dispatch({ message: data });
       },
+    });
+  }
+
+  async onSendMessage() {
+    const data = escape((this.refs.inputRef.getContent() as HTMLInputElement).value);
+
+    this.props.store.dispatch({ message: data });
+
+    const { message } = this.props.store.getState();
+
+    if (message) {
+      Socket.sendMessage(message);
+    }
+
+    const response = chatsAPI.me();
+    response.then((value:any) => {
+      this.props.store.dispatch({ chats: value });
     });
   }
 
@@ -49,7 +77,7 @@ export class Message extends Block<Props, Refs> {
     return `
       <div class="messenger__message">
         <div class="message__wrapper">
-          <div class="message__add button-icons">
+          <div class="message__add">
             <img src="${imgAdd}" alt="details" width="40px" height="40px"></img>
           </div>
           {{{Input
@@ -63,9 +91,13 @@ export class Message extends Block<Props, Refs> {
             modifying="message"
             ref="inputRef" 
           }}}
-          {{{ButtonSend ref="buttonSendRef" onClick=onSubmit sendable="{{sendable}}" }}}
+          {{{ButtonSend ref="buttonSendRef" onClick=onSendMessage sendable="{{sendable}}" }}}
         </div>
       </div>
     `;
   }
 }
+
+const ComposedMessage = withRouter(withStore(withIsLoading(Message)));
+
+export { ComposedMessage as Message };

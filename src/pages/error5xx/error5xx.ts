@@ -1,6 +1,28 @@
-import Block from 'core/Block';
+import { withStore, withRouter, withIsLoading } from 'utils';
+import { CoreRouter, Store, Block } from 'core';
 
-export class Error5xxPage extends Block<{}> {
+type Props = {
+  router: CoreRouter;
+  store: Store<AppState>;
+  isLoading: boolean;
+  onSignIn?: () => void;
+};
+
+class Error5xxPage extends Block<Props, {}> {
+  static componentName = 'Error5xxPage';
+
+  constructor(props: Props) {
+    super(props);
+
+    this.setProps({
+      onSignIn: () => this.onSignIn(),
+    });
+  }
+
+  onSignIn() {
+    this.props.router.go('/sign-in');
+  }
+
   render() {
     return `
     <div class="form__wrapper">
@@ -12,7 +34,7 @@ export class Error5xxPage extends Block<{}> {
         </div>
         
         <div class="form__bottom">
-          {{{Button text="Go back to Heylynx" link="/messenger" onClick=onSubmit}}}
+          {{{Button text="Go back to Heylynx" link="/messenger" onClick=onSignIn modifying="attraction"}}}
         </div>
 
       </div>
@@ -20,3 +42,7 @@ export class Error5xxPage extends Block<{}> {
     `;
   }
 }
+
+const ComposedError5xxPage = withRouter(withStore(withIsLoading(Error5xxPage)));
+
+export { ComposedError5xxPage as Error5xxPage };

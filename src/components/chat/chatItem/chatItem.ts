@@ -1,4 +1,4 @@
-import Block from 'core/Block';
+import { Block } from 'core';
 
 import './chatItem.scss';
 
@@ -6,6 +6,8 @@ type IncomingProps = {
   type?: 'in' | 'out';
   photo?: string;
   text?: string;
+  content?: string;
+  userId?: string;
 };
 
 export type Props = IncomingProps;

@@ -1,13 +1,17 @@
-import Block from 'core/Block';
-import { sendSubmit } from 'helpers/sendSubmit';
-import { validatingSubmit } from 'helpers/validatingSubmit';
-import ControlledInput from 'components/controlledInput';
+import { withStore, withRouter, withIsLoading } from 'utils';
+import { CoreRouter, Store, Block } from 'core';
+import { sendSubmit, validatingSubmit } from 'helpers';
+import { signup } from 'services';
+import { ControlledInput } from 'components/controlledInput';
 
-type IncomingProps = {
-};
-
-type Props = IncomingProps & {
-  onSubmit?: (e: FocusEvent) => void;
+type Props = {
+  router: CoreRouter;
+  store: Store<AppState>;
+  isLoading: boolean;
+  onToggleAppLoading?: () => void;
+  onNavigateNext?: () => void;
+  onCreateAccount?: () => void;
+  onSignIn?: () => void;
 };
 
 type Refs = {
@@ -21,22 +25,31 @@ type Refs = {
   passwordInputConfirmRef: ControlledInput;
 };
 
-export class SignupPage extends Block<Props, Refs> {
-  constructor() {
-    super();
+class SignUpPage extends Block<Props, Refs> {
+  constructor(props: Props) {
+    super(props);
+
     this.setProps({
-      onSubmit: (e: FocusEvent) => {
-        e.preventDefault();
-        validatingSubmit(this.refs);
-        if (sendSubmit()) {
-          console.log(sendSubmit());
-        }
-      },
+      onCreateAccount: () => this.onCreateAccount(),
+      onSignIn: () => this.onSignIn(),
     });
+  }
+
+  onCreateAccount() {
+    validatingSubmit(this.refs);
+    const data = sendSubmit();
+    if (data) {
+      this.props.store.dispatch(signup, data);
+    }
+  }
+
+  onSignIn() {
+    this.props.router.go('/sign-in');
   }
 
   render() {
     return `
+    {{#Layout isLoading=true}}
       <div class="form__wrapper">
         <div class="form form-signup">
           <div class="form__top">
@@ -122,12 +135,18 @@ export class SignupPage extends Block<Props, Refs> {
           </div>
           
           <div class="form__bottom">
-          {{{Button text="Create account" link="/error404" onClick=onSubmit modifying="attraction"}}}
-          {{{Button text="Sign in" link="/signin" onClick=onSubmit}}}
+
+          {{{Button text="Create account" onClick=onCreateAccount modifying="attraction"}}}
+          {{{Button text="or Sign in" onClick=onSignIn }}}
           </div>
 
         </div>
       </div>
+    {{/Layout}}
     `;
   }
 }
+
+const ComposedSignUpPage = withRouter(withStore(withIsLoading(SignUpPage)));
+
+export { ComposedSignUpPage as SignUpPage };

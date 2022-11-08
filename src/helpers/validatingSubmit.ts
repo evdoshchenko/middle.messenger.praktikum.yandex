@@ -1,6 +1,5 @@
-import { validateForm } from 'helpers/validateForm';
-import { ValidateType } from 'helpers/types';
-import Block from 'core/Block';
+import { validateForm, ValidateType } from 'helpers';
+import { Block } from 'core';
 
 export function validatingSubmit(refs: { [key: string]: Block<{}> }) {
   const refsArray = Object.entries(refs);

@@ -1,4 +1,4 @@
-import Block from 'core/Block';
+import { Block } from 'core';
 
 import './input.scss';
 
@@ -47,7 +47,7 @@ export class Input extends Block<Props> {
           type="{{type}}" 
           {{#if disabled}}disabled{{/if}} 
           placeholder="{{placeholder}}" 
-          value="">
+          value="{{value}}">
     `;
   }
 }

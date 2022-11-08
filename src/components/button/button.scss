@@ -6,10 +6,7 @@
   width: 100%;
   height: 44px;
   border-radius: 22px;
-  font-family: var(--accent-font);
-  font-size: var(--medium);
   background-color: var(--cream);
-  color: var(--green-light);
   border: 1px solid var(--green-light);
   box-shadow: var(--button-shadow);
 
@@ -39,5 +36,31 @@
     width: auto;
     height: auto;
     margin: auto;
+
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--accent-font);
+    font-size: var(--medium);
+    color: var(--green-light);
+
+    &_attraction {
+      color: var(--light);
+    }
+  }
+
+  &__icons {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: inline-block;
+
+    &:hover {
+      filter: drop-shadow(var(--icon-shadow));
+    }
+  
+    &:active {
+      filter: hue-rotate(260deg);
+    }
   }
 }

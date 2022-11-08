@@ -1,2 +1,2 @@
-export { ChatItem as default } from './chatItem';
+export { ChatItem } from './chatItem';
 export { Props as ChatItemProps } from './chatItem';

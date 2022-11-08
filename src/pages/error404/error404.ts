@@ -1,6 +1,28 @@
-import Block from 'core/Block';
+import { withStore, withRouter, withIsLoading } from 'utils';
+import { CoreRouter, Store, Block } from 'core';
 
-export class Error404Page extends Block<{}> {
+type Props = {
+  router: CoreRouter;
+  store: Store<AppState>;
+  isLoading: boolean;
+  onSignIn?: () => void;
+};
+
+class Error404Page extends Block<Props, {}> {
+  static componentName = 'Error404Page';
+
+  constructor(props: Props) {
+    super(props);
+
+    this.setProps({
+      onSignIn: () => this.onSignIn(),
+    });
+  }
+
+  onSignIn() {
+    this.props.router.go('/sign-in');
+  }
+
   render() {
     return `
     <div class="form__wrapper">
@@ -12,7 +34,7 @@ export class Error404Page extends Block<{}> {
         </div>
         
         <div class="form__bottom">
-          {{{Button text="Go back to Heylynx" link="/error500" onClick=onSubmit}}}
+          {{{Button text="Go back to Heylynx" onClick=onSignIn modifying="attraction"}}}
         </div>
 
       </div>
@@ -20,3 +42,7 @@ export class Error404Page extends Block<{}> {
     `;
   }
 }
+
+const ComposedError404Page = withRouter(withStore(withIsLoading(Error404Page)));
+
+export { ComposedError404Page as Error404Page };

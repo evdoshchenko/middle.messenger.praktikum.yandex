@@ -1,28 +1,42 @@
-import Block from 'core/Block';
+import { CoreRouter, Store, Block } from 'core';
+import { withStore, withRouter, withIsLoading } from 'utils';
 
 import './buttonBack.scss';
 import IconBack from 'icons/back.png';
 
-type IncomingProps = {
-  link?: string;
+type Props = {
+  router: CoreRouter;
+  store: Store<AppState>;
+  isLoading: boolean;
+  onMessenger?: () => void;
 };
 
-type Props = IncomingProps;
-
-export class ButtonBack extends Block<Props> {
+class ButtonBack extends Block<Props> {
   static componentName = 'ButtonBack';
 
-  constructor({ link }: IncomingProps) {
-    super({ link });
+  constructor(props: Props) {
+    super(props);
+
+    this.setProps({
+      onMessenger: () => this.onMessenger(),
+    });
+  }
+
+  onMessenger() {
+    this.props.router.go('/messenger');
   }
 
   protected render(): string {
     return `
       <div class="button-back__wrapper">
-        <a href="{{link}}" class="button-back__button button-icons" >
-          <img src=${IconBack} alt="back" width="40px" height="40px"></img>
-        </a>
+        <div class="button-back__button" >
+          {{{Button text="Back" onClick=onMessenger circled=true source="${IconBack}"}}}
+        </div>
       </div>
     `;
   }
 }
+
+const ComposedButtonBack = withRouter(withStore(withIsLoading(ButtonBack)));
+
+export { ComposedButtonBack as ButtonBack };

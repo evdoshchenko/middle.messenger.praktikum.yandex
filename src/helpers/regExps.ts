@@ -7,4 +7,5 @@ export const regExps = {
   SecondName: /^[A-ZА-Я]{1,1}[a-zа-я]{0,50}$/,
   DisplayName: /^[A-ZА-Я]{1,1}[a-zа-я]{0,50}$/,
   Message: /^.*$/,
+  UserID: /^[0-9]{0,15}$/,
 };

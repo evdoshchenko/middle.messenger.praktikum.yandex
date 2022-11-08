@@ -1,5 +1,4 @@
-import Block from 'core/Block';
-import template from 'bundle-text:./title.hbs';
+import { Block } from 'core';
 
 import './title.scss';
 
@@ -20,6 +19,5 @@ export class Title extends Block<Props> {
     return `
       <h1 class="title">{{text}}</h1>
     `;
-    // return template;
   }
 }

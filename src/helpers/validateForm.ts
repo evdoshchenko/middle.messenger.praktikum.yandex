@@ -1,6 +1,4 @@
-import { ValidateType } from 'helpers/types';
-import { regExps } from './regExps';
-import { errorsDescriptions } from './errorsDescriptions';
+import { ValidateType, regExps, errorsDescriptions } from 'helpers';
 
 type ValidateRule = {
   type: ValidateType;

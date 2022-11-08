@@ -52,4 +52,28 @@
     height: 300px;
     margin-top: 125px;
   }
+
+  &-module {
+    flex-grow: 1;
+    width: 400px;
+    display: none;
+    top: 100px;
+    right: 100px;
+    min-height: 70px;
+    box-sizing: border-box;
+    position: absolute;
+    margin:auto;
+
+    &_active{
+      flex-grow: 1;
+      width: 400px;
+      display: flex;
+      top: 95px;
+      right: 15px;
+      min-height: 70px;
+      box-sizing: border-box;
+      position: absolute;
+      margin:auto;
+    }
+  }
 }

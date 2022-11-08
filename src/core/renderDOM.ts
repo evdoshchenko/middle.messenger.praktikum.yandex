@@ -1,9 +1,6 @@
-import Block from './Block';
+import { Block } from 'core';
 
-type Props = {
-};
-
-export default function renderDOM(block: Block<Props>) {
+export function renderDOM(block: Block) {
   const root = document.querySelector('#app');
 
   root!.innerHTML = '';

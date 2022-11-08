@@ -1,8 +1,11 @@
-export default function queryStringify(data: any) {
-  if (typeof data !== 'object') {
-    throw new Error('Data must be object');
-  }
+export function queryStringify(data: { [s: string]: unknown; } | ArrayLike<unknown>) {
+  let strResult = '?';
+  const items = Object.entries(data);
 
-  const keys = Object.keys(data);
-  return keys.reduce((result, key, index) => `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`, '?');
+  items.forEach((item, i) => {
+    strResult += (strResult !== '?') ? '&' : '';
+    strResult += Array.isArray(item) ? `${i}=${item.toString()}` : `${i}=${item}`;
+  });
+
+  return strResult;
 }

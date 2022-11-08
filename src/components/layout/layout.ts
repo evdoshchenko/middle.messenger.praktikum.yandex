@@ -1,17 +1,36 @@
-import Block from 'core/Block';
+import { Block, CoreRouter } from 'core';
+import { withIsLoading, withRouter } from 'utils';
 
 import './layout.scss';
 
-type LayoutProps = {};
+type LayoutProps = {
+  router: CoreRouter;
+  isLoading: boolean;
+  fullScreen?: boolean;
+  splash?: boolean;
+  onNavigateToOnboarding?: () => void;
+};
 
-export class Layout extends Block<LayoutProps> {
+class Layout extends Block<LayoutProps> {
   static componentName = 'Layout';
+
+  constructor(props: LayoutProps) {
+    super(props);
+
+    this.setProps({
+      onNavigateToOnboarding: () => this.props.router.go('/signin'),
+    });
+  }
 
   protected render(): string {
     return `
-      <div class="form__wrapper">
-        <div class="screen__content" data-slot=1></div>
+      <div class="layout__wrapper {{#if splash}} screen_type_splash{{/if}}{{#if fullScreen}} screen_theme_full{{/if}}{{#if isLoading}} screen_loading{{/if}}">
+        <div class="layout" data-layout=1></div>
       </div>
     `;
   }
 }
+
+const ComposedLayout = withRouter(withIsLoading(Layout));
+
+export { ComposedLayout as Layout };

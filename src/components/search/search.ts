@@ -1,9 +1,9 @@
-import Block from 'core/Block';
-import validating from 'helpers/validating';
+import { Block } from 'core';
+import { validating } from 'helpers';
+import { Input } from '../input';
+import { ButtonSend } from '../buttonSend';
 
 import './search.scss';
-import Input from '../input';
-import ButtonSend from '../buttonSend';
 
 type IncomingProps = {
   name?: string;
