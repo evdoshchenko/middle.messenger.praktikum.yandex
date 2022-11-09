@@ -2,9 +2,10 @@
   &__buble {
     box-sizing: border-box;
     height: auto;
-    width: auto;
+    width:fit-content;
     max-width: 400px;
     padding: 10px;
+    position: relative;
 
     img {
       width: 100%;
@@ -39,6 +40,7 @@
     color: var(--light);
     overflow: hidden;
     padding-bottom: 0;
+    position: relative;
 
     img {
       width: 100%;

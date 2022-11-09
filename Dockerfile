@@ -1,8 +1,14 @@
-FROM node:16-alpine
+FROM node:18
 WORKDIR /app
-COPY package.json package.json
-RUN npm i
 COPY . .
-RUN npm run build
 EXPOSE 3000
+RUN npm install
+RUN npm run build
 CMD npm run start
+
+# FROM node:latest
+# WORKDIR /var/www
+# COPY package*.json .
+# RUN npm install
+# COPY . .
+# RUN npm run build

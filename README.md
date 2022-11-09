@@ -1,11 +1,11 @@
 
 # Heylynx messenger
 
-- version 0.3.0
+- version 0.4.0
 
-- technologies: TypeScript, ESLint, SCSS, Handlebars, Parcel, Node.js
+- technologies: TypeScript, SCSS, Handlebars, Webpack, Node.js, ESLint, Stylelint, Docker, Jest
 
-- functionalities: Routing, working with API
+- functionalities: Routing, working with API, WebSocket
 
 ## Install project
 
@@ -19,6 +19,8 @@
 
 ## Testable Prototype: 
  
+https://heylynx.herokuapp.com/
+
 https://incomparable-crostata-51d4dc.netlify.app/
 
 ## UX/UI protype: 
