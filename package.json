@@ -10,7 +10,8 @@
     "eslint": "node_modules/.bin/eslint .",
     "lint": "npm-run-all eslint stylelint",
     "test": "jest",
-    "docker": "docker run -p 4000:3000 -d messenger"
+    "docker": "docker run -p 4000:3000 -d messenger",
+    "prepare": "husky install"
   },
   "alias": {
     "src": "./src",
@@ -28,11 +29,6 @@
     "tests": "./src/tests"
   },
   "keywords": [],
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm-run-all test lint"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/evdoshchenko/middle.messenger.praktikum.yandex"
