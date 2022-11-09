@@ -33,30 +33,30 @@
 
 # Commands
 
-## Devepoling
+### Devepoling
 ```
 npm install
 npm run dev
 ```
 
-## Building
+### Building
 ```
 npm install
 npm run build
 ```
 
-## Running
+### Running
 ```
 npm install
 npm run start
 ```
 
-## Linting
+### Linting
 ```
 npm run lint
 ```
 
-## Testing
+### Testing
 ```
 npm run test
 ```
