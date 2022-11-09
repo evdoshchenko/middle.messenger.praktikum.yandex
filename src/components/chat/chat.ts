@@ -21,14 +21,6 @@ class Chat extends Block<Props> {
     const state = this.props.store.getState();
     const messages = state.messages || [];
 
-    const { message } = this.props.store.getState();
-    const lastMessage = messages[messages.length - 1];
-    if (lastMessage) {
-      if (lastMessage.content === message) {
-        console.log(message);
-      }
-    }
-
     return `
       <div class="messenger__chat">
         <div class="chat-content">

@@ -51,31 +51,19 @@ class MessengerPage extends Block<Props, {}> {
   }
 
   render() {
-    const { users, activeChat } = this.props.store.getState();
-    const usersArr = Object.entries({ users })[0][1];
-    const newUsers = [];
-
-    for (let i = 0; i < usersArr?.length!; i += 1) {
-      newUsers!.push(usersArr![i].id);
-    }
-
     return `
     {{#Layout isLoading=true}}
       <div class="messenger">
       
         <div class="messenger__left">
-          {{{NewChat }}}
-          {{{Chats}}}
-          {{{Tabs}}}
+          {{{ NewChat }}}
+          {{{ Chats }}}
+          {{{ Tabs}}}
         </div>
         <div class="messenger__right">
-          {{{Contact 
-            firstName="${activeChat?.title || 'Loading...'}"
-            users="Users: ${newUsers !== undefined ? newUsers : '...'}"
-            avatar="${activeChat?.avatar || ''}"
-          }}}
-          {{{Chat}}}
-          {{{Message}}}
+          {{{ Contact }}}
+          {{{ Chat }}}
+          {{{ Message }}}
         </div>
       </div>
     {{/Layout}}

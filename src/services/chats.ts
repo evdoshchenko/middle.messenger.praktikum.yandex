@@ -26,15 +26,11 @@ export const addUser = async (
   state: AppState,
   action: AddUserPayload,
 ) => {
-  dispatch({ isLoading: true });
-
   const response = await chatsAPI.addUser(action);
 
   if (apiHasError(response)) {
     dispatch({ isLoading: false, loginFormError: response.reason });
-    return;
   }
-  dispatch({ isLoading: false });
 };
 
 export const deleteUser = async (
@@ -42,15 +38,11 @@ export const deleteUser = async (
   state: AppState,
   action: AddUserPayload,
 ) => {
-  dispatch({ isLoading: true });
-
   const response = await chatsAPI.deleteUser(action);
 
   if (apiHasError(response)) {
     dispatch({ isLoading: false, loginFormError: response.reason });
-    return;
   }
-  dispatch({ isLoading: false });
 };
 
 export const createNewChat = async (

@@ -30,7 +30,7 @@ class Socket extends EventBus {
         ws.addEventListener('message', (e) => {
           try {
             const data = JSON.parse(e.data);
-            console.info('Data received', { data }); // !!
+            console.info('Data received', { data });
 
             if (Array.isArray(data)) {
               const filteredMessages = data.filter((message: any) => message.content) || [];

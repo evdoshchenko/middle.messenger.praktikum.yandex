@@ -96,6 +96,14 @@ class ProfilePage extends Block<Props, Refs> {
     this.props.store.dispatch(logout);
   }
 
+  componentDidUpdate() {
+    if (this.props.store.getState().screen !== 'profile') {
+      return false;
+    }
+
+    return true;
+  }
+
   render() {
     const { user } = this.props.store.getState();
     if (!user) {

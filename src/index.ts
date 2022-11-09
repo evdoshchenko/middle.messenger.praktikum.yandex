@@ -3,15 +3,13 @@ import {
 } from 'core';
 import { components } from 'components';
 import { SplashPage } from 'pages/splash';
-import { initApp, initChats } from 'services';
+import { initApp } from 'services';
 import { initRouter } from './router';
 import { defaultState } from './store';
 
 import './styles/index.scss';
 
 import 'regenerator-runtime/runtime';
-
-// require('babel-core/register');
 
 components.forEach((component) => {
   registerComponent(component);
@@ -47,6 +45,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   store.dispatch({ isLoading: true });
   store.dispatch(initApp);
-  store.dispatch(initChats);
   store.dispatch({ isLoading: false });
 });
