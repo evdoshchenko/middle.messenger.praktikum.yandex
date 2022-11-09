@@ -72,24 +72,11 @@
     display: flex;
     flex-direction: column-reverse;
     overflow: auto;
-    // height: 300px;
     flex-grow: 1;
     background-color: var(--cream);
-
     width: 100%;
     box-sizing: border-box;
     padding: 10px 15px;
-
-
-    // display: flex;
-    // flex-direction: column-reverse;
-// overflow-y: scroll;
-    // box-sizing: border-box;
-    // width: 100%;
-        // flex-grow: 1;
-    // padding: 10px 15px;
-        // background-color: var(--cream);
-
   }
 
   &__message {
@@ -103,10 +90,6 @@
 }
 
 .chat-content {
-  // padding: 20px;
-  // max-width: 500px;
   margin: auto;
   width: 100%;
-  // margin: auto;
-  // width: auto;
 }

@@ -13,14 +13,8 @@ const USER_MOCK = {
   secondName: 'login',
 };
 
-// type RenderBlockParams<T> = {
-//   Block: BlockClass<T>;
-//   props: T;
-//   state?: Partial<AppState>;
-// };
-
 describe('pages/Profile', () => {
-  it('should logout from profile and redirect to onboarding', async () => {
+  it('should logout from profile and redirect to signin', async () => {
     await step('render profile page to dom', () => {
       renderBlock({
         Block: ProfilePage,
@@ -38,8 +32,8 @@ describe('pages/Profile', () => {
       button.click();
     });
 
-    await step('wait openning onboarding page', async () => {
-      await waitFor(() => expect(queryByTestId(document.body, 'onboarding-screen')).toBeInTheDocument());
+    await step('wait openning sign in page', async () => {
+      await waitFor(() => expect(queryByTestId(document.body, 'signin-screen')).toBeInTheDocument());
     });
 
     await step('check state', async () => {

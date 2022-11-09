@@ -50,7 +50,7 @@ class SignInPage extends Block<Props, Refs> {
 
     return `
     {{#Layout isLoading=true}}
-      <div class="form__wrapper" data-testid="onboarding-screen">
+      <div class="form__wrapper" data-testid="signin-screen">
         <form class="form form-signin">
           <div class="form__top">
 

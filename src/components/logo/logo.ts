@@ -1,5 +1,5 @@
 import { Block } from 'core';
-import logo from 'images/logo.webp';
+import logo from 'icons/logo.webp';
 
 import './logo.scss';
 

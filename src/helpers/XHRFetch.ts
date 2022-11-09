@@ -43,7 +43,6 @@ class XHRFetch {
       const formData = new FormData();
 
       xhr.open(method, `${process.env.API_ENDPOINT}${url}`);
-      // xhr.open(method, `${url}`);
 
       if (!(data instanceof File)) {
         xhr.setRequestHeader('Content-Type', 'application/json');
@@ -60,11 +59,6 @@ class XHRFetch {
         } else {
           reject(xhr.response);
         }
-        // if (xhr.status >= 300) {
-        //   resolve(xhr.response);
-        // } else {
-        //   resolve(xhr.response);
-        // }
       };
 
       xhr.ontimeout = reject;

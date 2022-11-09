@@ -31,11 +31,6 @@ export async function renderBlock<T extends Object>({ Block, props, state = defa
 
   initRouter(router, store);
 
-  /**
-   * Ждем вызова componentDidMount,
-   * медота жизненного цикла компонента,
-   * который вызывается через 100мс в Block.getContent
-   */
   await sleep();
 }
 
