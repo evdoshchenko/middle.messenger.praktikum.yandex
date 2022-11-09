@@ -71,12 +71,25 @@
   &__chat {
     display: flex;
     flex-direction: column-reverse;
-    box-sizing: border-box;
-    width: 100%;
+    overflow: auto;
+    // height: 300px;
     flex-grow: 1;
-    padding: 10px 15px;
     background-color: var(--cream);
-    overflow-y: scroll;
+
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 15px;
+
+
+    // display: flex;
+    // flex-direction: column-reverse;
+// overflow-y: scroll;
+    // box-sizing: border-box;
+    // width: 100%;
+        // flex-grow: 1;
+    // padding: 10px 15px;
+        // background-color: var(--cream);
+
   }
 
   &__message {
@@ -90,6 +103,10 @@
 }
 
 .chat-content {
+  // padding: 20px;
+  // max-width: 500px;
   margin: auto;
-  width: auto;
+  width: 100%;
+  // margin: auto;
+  // width: auto;
 }
