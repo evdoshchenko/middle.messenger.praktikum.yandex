@@ -19,6 +19,7 @@ type Props = {
   onBlur?: (e: FocusEvent) => void;
   onSubmit?: (e: FocusEvent) => void;
   onSendMessage?: () => void;
+  onEnter?: (e: KeyboardEvent) => void;
   sendable?: boolean;
 };
 
@@ -47,10 +48,15 @@ class Message extends Block<Props, Refs> {
       onBlur: (e: FocusEvent) => {
         e.preventDefault();
       },
+      onEnter: (e: KeyboardEvent) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          this.onSendMessage();
+        }
+      },
       onSubmit: (e: FocusEvent) => {
         e.preventDefault();
         const data = (this.refs.inputRef.getContent() as HTMLInputElement).value;
-        console.log(data);
         this.props.store.dispatch({ message: data });
       },
     });
@@ -90,6 +96,7 @@ class Message extends Block<Props, Refs> {
             onBlur=onBlur
             modifying="message"
             ref="inputRef" 
+            onKeypress=onEnter
           }}}
           {{{ButtonSend ref="buttonSendRef" onClick=onSendMessage sendable="{{sendable}}" }}}
         </div>

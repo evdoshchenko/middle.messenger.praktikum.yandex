@@ -70,13 +70,13 @@
 
   &__chat {
     display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    width: 100%;
-    flex-grow: 1;
-    padding: 10px 15px;
-    background-color: var(--cream);
+    flex-direction: column-reverse;
     overflow: auto;
+    flex-grow: 1;
+    background-color: var(--cream);
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 15px;
   }
 
   &__message {
@@ -87,4 +87,9 @@
     padding: 10px;
     background-color: var(--green-black);
   }
+}
+
+.chat-content {
+  margin: auto;
+  width: 100%;
 }

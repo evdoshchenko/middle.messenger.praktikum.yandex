@@ -3,7 +3,7 @@ import {
 } from 'utils';
 import { CoreRouter, Store, Block } from 'core';
 import { sendSubmit, validatingSubmit } from 'helpers';
-import { ControlledInput } from 'components/controlledInput';
+import { ControlledInput } from 'components';
 import { editPassword } from 'services';
 
 type Props = {
@@ -64,7 +64,7 @@ class PasswordPage extends Block<Props, Refs> {
               <div class="form__top">
                 {{{ProfilePhoto 
                   name="avatar" 
-                  imglink="${process.env.API_ENDPOINT}/resources${user.avatar || ' '}"
+                  imglink="${process.env.IMG_ENDPOINT}${user.avatar || ' '}"
                   disabled=true
                 }}}
                 {{{Title text="${user.login || ' '}"}}}

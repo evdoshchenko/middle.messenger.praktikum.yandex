@@ -108,7 +108,6 @@ class Chats extends Block<Props, Refs> {
           lastMessage="${chat.lastMessage ? String(chat.lastMessage.content) : '...'}"
           user="${chat.title || '...'}"
           photo="${chat.avatar || ''}"
-          
           time="${chat.time || ''}"
           counter="${chat.unreadCount || ''}"
           id="${chat.id || ''}"

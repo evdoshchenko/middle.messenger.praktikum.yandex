@@ -17,7 +17,7 @@ export class PathRouter implements CoreRouter {
     }
   }
 
-  private onRouteChange() {
+  onRouteChange() {
     const { pathname } = window.location;
     const found = Object.entries(this.routes).some(([routeHash, callback]) => {
       if (routeHash === pathname) {

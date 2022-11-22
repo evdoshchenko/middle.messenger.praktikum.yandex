@@ -23,12 +23,14 @@ class Chat extends Block<Props> {
 
     return `
       <div class="messenger__chat">
-        ${messages.map((message: ChatItemProps) => `
-        {{{ChatItem 
-          type="${(message.userId === state.user?.id) ? 'out' : 'in'}"
-          photo="${message.photo || ''}"
-          text="${message.content || ''}"
-        }}}`).join('')}
+        <div class="chat-content">
+          ${messages.map((message: ChatItemProps) => `
+          {{{ChatItem 
+            type="${(message.userId === state.user?.id) ? 'out' : 'in'}"
+            photo="${message.photo || ''}"
+            text="${message.content || ''}"
+          }}}`).join('')}
+        </div>
       </div>
     `;
   }

@@ -1,26 +1,66 @@
 
 # Heylynx messenger
 
-- version 0.3.0
+* version 0.4.0
+* functionalities: Routing, working with API, WebSocket
 
-- technologies: TypeScript, ESLint, SCSS, Handlebars, Parcel, Node.js
+### The application has the following features:
+* Registration
+* Login
+* Exit
+* Update profile data
+* Change avatar
+* Create and delete chat
+* Add and remove users in chat
+* Sending and receiving text messages
 
-- functionalities: Routing, working with API
+### Technologies
+* TypeScript
+* SCSS
+* Handlebars
+* Webpack
+* Node.js
+* ESLint
+* Stylelint
+* Docker
+* Jest
+* Husky
 
-## Install project
+# Testable Prototypes: 
 
-- npm run dev (for devepoling)
+* [HEROKU](https://heylynx.herokuapp.com/)
+* [NETLIFY](https://incomparable-crostata-51d4dc.netlify.app/)
 
-- npm run lint  (for using eslint and stylelint)
+# Commands
 
-- npm run build  (for build project)
+### Devepoling
+```
+npm install
+npm run dev
+```
 
-- npm run start  (for start project)
+### Building
+```
+npm install
+npm run build
+```
 
-## Testable Prototype: 
- 
-https://incomparable-crostata-51d4dc.netlify.app/
+### Running
+```
+npm install
+npm run start
+```
 
-## UX/UI protype: 
+### Linting
+```
+npm run lint
+```
 
-https://www.figma.com/file/L0HXF6RQP5MDU5xrPIrC0d/Heylynx?node-id=0%3A1
+### Testing
+```
+npm run test
+```
+
+# UI protype: 
+
+* [FIGMA](https://www.figma.com/file/L0HXF6RQP5MDU5xrPIrC0d/Heylynx?node-id=0%3A1)

@@ -4,8 +4,7 @@ import {
 import { logout, edit, editAvatar } from 'services';
 import { CoreRouter, Store, Block } from 'core';
 import { sendSubmit, validatingSubmit } from 'helpers';
-import { ControlledInput } from 'components/controlledInput';
-import { ProfilePhoto } from 'components/profilePhoto';
+import { ControlledInput, ProfilePhoto } from 'components';
 
 type Props = {
   router: CoreRouter;
@@ -97,6 +96,14 @@ class ProfilePage extends Block<Props, Refs> {
     this.props.store.dispatch(logout);
   }
 
+  componentDidUpdate() {
+    if (this.props.store.getState().screen !== 'profile') {
+      return false;
+    }
+
+    return true;
+  }
+
   render() {
     const { user } = this.props.store.getState();
     if (!user) {
@@ -120,7 +127,7 @@ class ProfilePage extends Block<Props, Refs> {
               <div class="form__top">
                 {{{ProfilePhoto 
                   name="avatar" 
-                  imglink="${process.env.API_ENDPOINT}/resources${user.avatar || '/default-link'}"
+                  imglink="${process.env.IMG_ENDPOINT}${user.avatar || '/default-link'}"
                   disabled=${this.props.disabled}
                 }}}
                 {{{Title text="${user.login || ' '}"}}}
@@ -209,7 +216,12 @@ class ProfilePage extends Block<Props, Refs> {
               <div class="form__bottom">
                 {{{Button text="${this.props.infoButton}" onClick=onEdit}}}
                 {{{Button text="Change password" onClick=onEditPassword}}}
-                {{{Button text="Log out" onClick=onLogOut modifying="danger"}}}
+                {{{Button
+                  dataTestId="logout-btn"
+                  text="Log out"
+                  onClick=onLogOut
+                  modifying="danger"
+                }}}
               </div>
 
             </div>

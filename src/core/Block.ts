@@ -22,7 +22,7 @@ export class Block<P = any, Refs extends Record<string, Block<any>> = {}> {
 
   private _element: Nullable<HTMLElement> = null;
 
-  protected readonly props: P;
+  protected props: Readonly<P>;
 
   protected children: { [id: string]: Block } = {};
 
@@ -40,7 +40,7 @@ export class Block<P = any, Refs extends Record<string, Block<any>> = {}> {
 
     this.getStateFromProps(props);
 
-    this.props = this._makePropsProxy(props || ({} as P));
+    this.props = props || ({} as P);
     this.state = this._makePropsProxy(this.state);
 
     this.eventBus = () => eventBus;
@@ -109,12 +109,17 @@ export class Block<P = any, Refs extends Record<string, Block<any>> = {}> {
     return true;
   }
 
-  setProps = (nextProps: Partial<P>) => {
-    if (!nextProps) {
+  setProps = (nextPartialProps: Partial<P>) => {
+    if (!nextPartialProps) {
       return;
     }
 
-    Object.assign(this.props!, nextProps);
+    const prevProps = this.props;
+    const nextProps = { ...prevProps, ...nextPartialProps };
+
+    this.props = nextProps;
+
+    this.eventBus().emit(Block.EVENTS.FLOW_CDU, prevProps, nextProps);
   };
 
   getProps = () => this.props;

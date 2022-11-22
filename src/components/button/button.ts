@@ -10,6 +10,7 @@ type IncomingProps = {
   modifying?: string;
   circled?: boolean;
   onClick?: () => void;
+  dataTestId?: string;
 };
 
 type Props = {
@@ -21,7 +22,8 @@ type Props = {
   circled?: boolean;
   events?: {
     click?: () => void;
-  }
+  };
+  dataTestId?: string;
 };
 export class Button extends Block<Props> {
   static componentName = 'Button';
@@ -42,7 +44,12 @@ export class Button extends Block<Props> {
         </div>
       {{else}}
         <div class="button{{#if modifying}} button_{{modifying}}{{/if}}">
-          <button class="button__caption{{#if modifying}} button__caption_{{modifying}}{{/if}}" type="button">{{text}}</button>
+          <button 
+            {{#if dataTestId}}data-testid="{{dataTestId}}"{{/if}}
+            class="button__caption{{#if modifying}}
+            button__caption_{{modifying}}{{/if}}"
+            type="button">{{text}}
+          </button>
         </div>
       {{/if}}
     `;

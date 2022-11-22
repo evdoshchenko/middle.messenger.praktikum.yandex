@@ -6,6 +6,7 @@ type IncomingProps = {
   onInput?: () => void;
   onFocus?: () => void;
   onBlur?: () => void;
+  onKeypress?: () => void;
   type?: 'text' | 'password' | 'email';
   placeholder?: string;
   name?: string;
@@ -25,6 +26,7 @@ type Props = {
     input?: () => void;
     focus?: () => void;
     blur?: () => void;
+    keypress?: () => void;
   }
 };
 
@@ -32,22 +34,25 @@ export class Input extends Block<Props> {
   static componentName = 'Input';
 
   constructor({
-    onInput, onFocus, onBlur, ...props
+    onInput, onFocus, onBlur, onKeypress, ...props
   }: IncomingProps) {
     super({
-      ...props, events: { input: onInput, focus: onFocus, blur: onBlur },
+      ...props,
+      events: {
+        input: onInput, focus: onFocus, blur: onBlur, keypress: onKeypress,
+      },
     });
   }
 
   protected render(): string {
     return `
-        <input 
-          name="{{name}}" 
-          class="input{{#if modifying}}-{{modifying}}{{/if}}" 
-          type="{{type}}" 
-          {{#if disabled}}disabled{{/if}} 
-          placeholder="{{placeholder}}" 
-          value="{{value}}">
+      <input 
+        name="{{name}}" 
+        class="input{{#if modifying}}-{{modifying}}{{/if}}" 
+        type="{{type}}" 
+        {{#if disabled}}disabled{{/if}} 
+        placeholder="{{placeholder}}" 
+        value="{{value}}">
     `;
   }
 }

@@ -3,7 +3,7 @@ import { CoreRouter, Store, Block } from 'core';
 import { chatsAPI } from 'api';
 import { validatingSubmit } from 'helpers';
 import { addUser, deleteUser } from 'services';
-import { ControlledInput } from 'components/controlledInput';
+import { ControlledInput } from 'components';
 
 import './contact.scss';
 import imgDetails from 'icons/details.png';
@@ -87,6 +87,9 @@ class Contact extends Block<Props, Refs> {
     const state = this.props.store.getState();
     this.props.store.dispatch({ isLoading: true });
     const response:any = await chatsAPI.getUsers(state.activeChat?.id!);
+    await this.props.store.dispatch({ users: response });
+    await this.render();
+
     this.props.store.dispatch({ users: response, isLoading: false });
   }
 
@@ -99,22 +102,30 @@ class Contact extends Block<Props, Refs> {
   }
 
   protected render(): string {
+    const { users, activeChat } = this.props.store.getState();
+    const usersArr = Object.entries({ users })[0][1];
+    const newUsers = [];
+
+    for (let i = 0; i < usersArr?.length!; i += 1) {
+      newUsers!.push(usersArr![i].id);
+    }
+
     return `
       <div class="messenger__contact">
         <div class="contact__wrapper">
           <div class="contact__data">
             <div class="contact__photo">
               {{#if avatar}}
-                <img src="${this.props.avatar}" alt="contact-avatar" width="40px" height="40px"></img>
+                <img src="${activeChat?.avatar}" alt="contact-avatar" width="40px" height="40px"></img>
               {{else}}
                 
               {{/if}}
               
             </div>
             <div class="contact__name">
-              ${this.props.firstName}
+              ${activeChat?.title}
               <div class="contact__users">
-                ${this.props.users}
+                ${newUsers}
               </div>
             </div>
 

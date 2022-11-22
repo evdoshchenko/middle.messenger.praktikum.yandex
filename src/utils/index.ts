@@ -7,3 +7,4 @@ export {
   transformUser, transformChats, transformActiveChat, transformMessageView,
 } from './apiTransformers';
 export { hasError as apiHasError } from './apiHasError';
+export { sleep } from './sleep';

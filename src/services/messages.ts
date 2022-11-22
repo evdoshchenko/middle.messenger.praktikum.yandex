@@ -11,7 +11,7 @@ class Socket extends EventBus {
       .post(`/chats/token/${chatID}`)
       .then((tokenRes: string | any) => {
         const { token } = tokenRes;
-        const ws = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatID}/${token}`);
+        const ws = new WebSocket(`${process.env.WS_ENDPOINT}/${userId}/${chatID}/${token}`);
         this.websocket = ws;
         ws.addEventListener('open', () => {
           window.store.dispatch({ ws, messages: this.getMessages() });

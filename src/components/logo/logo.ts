@@ -1,5 +1,5 @@
 import { Block } from 'core';
-import logo from 'images/logo.webp';
+import logo from 'icons/logo.webp';
 
 import './logo.scss';
 
@@ -10,7 +10,7 @@ export class Logo extends Block<Props> {
 
   protected render(): string {
     return `
-    <div class="logo">
+    <div class="logo" data-testid="splash-logo">
       <img src=${logo} alt="details" width="250px" height="250px"></img>
     </div>
     `;
